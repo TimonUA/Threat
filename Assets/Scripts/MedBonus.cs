@@ -30,18 +30,15 @@ public class MedBonus : MonoBehaviour
     }
     void Update()
     {
-        //if (!PauseMenu.IsPaused)
-        //{
+        if (!PauseMenu.IsPaused)
+        {
             medPosition = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f));
-        //if (!spawnBonus)
-        //{
-        //    spawnBonus = true;
-
-        spawnBonus = true;
-            //}
-           
-        //}
-        //else
-        //    spawnBonus = false;
+            if (!spawnBonus)
+            {
+                spawnBonus = true;
+            }
+        }
+        else
+            spawnBonus = false;
     }
 }
