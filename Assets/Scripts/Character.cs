@@ -13,9 +13,11 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     public int typeName;
+    bool IsInfected;
     //public Character()
     void Start()
     {
+        IsInfected = false;
         rand = Random.Range(0, 2);
         if (rand == 1)
         {
