@@ -131,3 +131,4 @@ MonoBehaviour:
   age: 0
   intelligence: 0
   strength: 0
+  typeName: 0

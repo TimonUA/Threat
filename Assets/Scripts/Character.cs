@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     public int typeName;
-    bool IsInfected;
+    public bool IsInfected;
     //public Character()
     void Start()
     {
