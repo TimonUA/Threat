@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     public int strength;
     private int maxStats = 10;
     private int rand;
+    public int typeName;
     //public Character()
     void Start()
     {
@@ -19,10 +20,14 @@ public class Character : MonoBehaviour
         if (rand == 1)
         {
             gender = "Male";
+            typeName = 6;
+            name = NVJOBNameGen.Uppercase(NVJOBNameGen.GiveAName(typeName));
         }
         else
         {
             gender = "Female";
+            typeName = 5;
+            name = NVJOBNameGen.Uppercase(NVJOBNameGen.GiveAName(typeName));
         }
         age = Random.Range(18, 51);
         rand = Random.Range(0, 3);

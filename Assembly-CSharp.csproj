@@ -63,6 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\#NVJOB Name Generator\Examples\Example 0\OneNameExample.cs" />
+    <Compile Include="Assets\#NVJOB Name Generator\Examples\Example 0\RotateNameExample.cs" />
+    <Compile Include="Assets\#NVJOB Name Generator\Examples\Example 1\TextMeshName.cs" />
+    <Compile Include="Assets\#NVJOB Name Generator\Name Generator\NVJOBNameGen.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\Generator.cs" />
@@ -71,6 +75,9 @@
     <Compile Include="Assets\Scripts\MedBonus.cs" />
     <Compile Include="Assets\Scripts\MiniGame1.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <None Include="Assets\#NVJOB Name Generator\license_unity.txt" />
+    <None Include="Assets\#NVJOB Name Generator\Examples\Example 1\People Avatars\Designed by.txt" />
+    <None Include="Assets\#NVJOB Name Generator\license_nvjob.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
