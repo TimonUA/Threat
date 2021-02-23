@@ -24,8 +24,8 @@ public class MedBonus : MonoBehaviour
         if (spawnBonus)
         {
             GameObject med = Instantiate<GameObject>(medPrefab);
-            med.transform.position = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f)); //позиція яблука рівна позиції яблуні
-            Invoke("SpawnBonus", secondsBetweenBonus);  //кожну секунду буде скидатися нове яблуко
+            med.transform.position = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f)); 
+            Invoke("SpawnBonus", secondsBetweenBonus);  
         }
     }
     void Update()

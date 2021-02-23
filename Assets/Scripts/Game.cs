@@ -20,19 +20,8 @@ public class Game : MonoBehaviour
         if(st==1)
         {
             GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
-            rand = Random.Range(0, 6);
-            Debug.Log(rand);
-            Debug.Log(crew.Length);
-            for(int i=0;i<6;i++)
-            {
-                if(i==rand)
-                {
-                    crew[i].GetComponent<Character>().IsInfected = true;
-                    Debug.Log(crew[i]);
-                    Debug.Log(crew[i].GetComponent<Character>().IsInfected);
-                    st = 0;
-                }
-            }
+            SetCoordinates(crew);
+            st = 0;
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -45,6 +34,22 @@ public class Game : MonoBehaviour
                     Destroy(hit.collider.gameObject);
                 }
             }
+        }
+    }
+    void SetCoordinates(GameObject[] crew)
+    {
+        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, 0f), new Vector2(-6.0f, 0f), new Vector2(5f, 3f), new Vector2(5f, -3f), new Vector2(-5f, 3f), new Vector2(-5f, -3f) };
+        for (int i=0;i<crew.Length;i++)
+        {
+            if(i<Coordinates.Length)
+                crew[i].GetComponent<Character>().transform.position = Coordinates[i];
+            else
+            {
+                crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0f);
+                crew[i].GetComponent<Character>().IsInfected = true;
+                Debug.Log(crew[i]);
+            }
+
         }
     }
 }
