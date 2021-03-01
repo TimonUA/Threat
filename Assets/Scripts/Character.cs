@@ -14,9 +14,17 @@ public class Character : MonoBehaviour
     private int rand;
     private int typeName;
     public bool IsInfected;
+    SpriteRenderer sprite;
+    public Sprite engineerMaleSprite;
+    public Sprite medicMaleSprite;
+    public Sprite explorerMaleSprite;
+    public Sprite engineerFemaleSprite;
+    public Sprite medicFemaleSprite;
+    public Sprite explorerFemaleSprite;
     //public Character()
     void Start()
     {
+        sprite = this.gameObject.GetComponent<SpriteRenderer>();
         IsInfected = false;
         rand = Random.Range(0, 2);
         if (rand == 1)
@@ -36,14 +44,38 @@ public class Character : MonoBehaviour
         if (rand == 0)
         {
             role = "Engineer";
+            if(gender=="Male")
+            {
+                sprite.sprite = engineerMaleSprite;
+            }
+            else
+            {
+                sprite.sprite = engineerFemaleSprite;
+            }
         }
         else if (rand == 1)
         {
             role = "Medic";
+            if (gender == "Male")
+            {
+                sprite.sprite = medicMaleSprite;
+            }
+            else
+            {
+                sprite.sprite = medicFemaleSprite;
+            }
         }
         else
         {
             role = "Explorer";
+            if (gender == "Male")
+            {
+                sprite.sprite = explorerMaleSprite;
+            }
+            else
+            {
+                sprite.sprite = explorerFemaleSprite;
+            }
         }
             for (int i = 0; i < maxStats; i++)
         {

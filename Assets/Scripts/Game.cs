@@ -38,14 +38,14 @@ public class Game : MonoBehaviour
     }
     void SetCoordinates(GameObject[] crew)
     {
-        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, 0f), new Vector2(-6.0f, 0f), new Vector2(5f, 3f), new Vector2(5f, -3f), new Vector2(-5f, 3f), new Vector2(-5f, -3f) };
+        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, -1f), new Vector2(-5f, -1.5f), new Vector2(4.75f, 2f), new Vector2(2f, -3f), new Vector2(-4f, 2.4f), new Vector2(-2.25f, -3f) };
         for (int i=0;i<crew.Length;i++)
         {
             if(i<Coordinates.Length)
                 crew[i].GetComponent<Character>().transform.position = Coordinates[i];
             else
             {
-                crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0f);
+                crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0.5f);
                 crew[i].GetComponent<Character>().IsInfected = true;
                 Debug.Log(crew[i]);
             }

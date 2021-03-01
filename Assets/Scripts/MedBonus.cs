@@ -17,7 +17,7 @@ public class MedBonus : MonoBehaviour
         spawnBonus = true;
  
 
-        Invoke("SpawnBonus", 2f);
+        Invoke("SpawnBonus", 10f);
     }
     void SpawnBonus()
     {

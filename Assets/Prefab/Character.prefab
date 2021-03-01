@@ -131,4 +131,12 @@ MonoBehaviour:
   age: 0
   intelligence: 0
   strength: 0
-  typeName: 0
+  IsInfected: 0
+  engineerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
+  medicMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
+  explorerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
+  engineerFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b,
+    type: 3}
+  medicFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
+  explorerFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b,
+    type: 3}

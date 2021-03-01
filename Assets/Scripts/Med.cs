@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Med : MonoBehaviour
 {
-    public float LifeTimeRemain = 2f;
+    public float LifeTimeRemain = 3f;
     // Update is called once per frame
     void Update()
     {
