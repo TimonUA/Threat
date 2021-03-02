@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 1\TextMeshName.cs" />
     <Compile Include="Assets\Scripts\#NVJOB Name Generator\Name Generator\NVJOBNameGen.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\FillBar.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\Generator.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />

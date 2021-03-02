@@ -6,6 +6,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public float GameProgress;
+    public GameObject ProgressBar;
     private int rand;
     private int st;
     // Start is called before the first frame update
@@ -30,11 +31,13 @@ public class Game : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Med")
                 {
-                    GameProgress += 1f;
+                    GameProgress += 0.25f;
                     Destroy(hit.collider.gameObject);
                 }
             }
         }
+        //GameProgress += 0.001f;
+        ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
     }
     void SetCoordinates(GameObject[] crew)
     {
