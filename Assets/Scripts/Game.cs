@@ -41,7 +41,7 @@ public class Game : MonoBehaviour
     }
     void SetCoordinates(GameObject[] crew)
     {
-        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, -1f), new Vector2(-5f, -1.5f), new Vector2(4.75f, 2f), new Vector2(2f, -3f), new Vector2(-4f, 2.4f), new Vector2(-2.25f, -3f) };
+        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, -1f), new Vector2(-5f, -1.5f), new Vector2(4.35f, 2.35f), new Vector2(3f, -2.5f), new Vector2(-3.3f, 2.75f), new Vector2(-3f, -2.5f) };
         for (int i=0;i<crew.Length;i++)
         {
             if(i<Coordinates.Length)

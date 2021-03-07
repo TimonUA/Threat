@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\MedBonus.cs" />
     <Compile Include="Assets\Scripts\MiniGame1.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\TilemapClick.cs" />
     <None Include="Assets\Sprites\Space\UI\Spritesheet\uipackSpace_sheet.xml" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\license_unity.txt" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 1\People Avatars\Designed by.txt" />
