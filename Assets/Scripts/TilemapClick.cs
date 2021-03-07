@@ -35,34 +35,50 @@ public class TilemapClick : MonoBehaviour
             if (clickCellPosition==TilePositionNW1)
             {
                 if (tilemap.GetTile(clickCellPosition) == TileToChangeNW)
+                {
                     tilemap.SetTile(clickCellPosition, TileToSet);
+                }
                 else
+                {
                     tilemap.SetTile(clickCellPosition, TileToChangeNW);
+                }
             }
             if (clickCellPosition == TilePositionNW2)
             {
                 if (tilemap.GetTile(clickCellPosition) == TileToChangeNW)
+                {
                     tilemap.SetTile(clickCellPosition, TileToSet);
+                }
                 else
+                {
                     tilemap.SetTile(clickCellPosition, TileToChangeNW);
+                }
             }
             if (clickCellPosition == TilePositionSW1)
             {
                 if (tilemap.GetTile(clickCellPosition) == TileToChangeSW)
+                {
                     tilemap.SetTile(clickCellPosition, TileToSet);
+                }
                 else
+                {
                     tilemap.SetTile(clickCellPosition, TileToChangeSW);
+                }
             }
             if (clickCellPosition == TilePositionSW2)
             {
                 if (tilemap.GetTile(clickCellPosition) == TileToChangeSW)
+                {
                     tilemap.SetTile(clickCellPosition, TileToSet);
+                }
                 else
+                {
                     tilemap.SetTile(clickCellPosition, TileToChangeSW);
+                }
             }
 
-            Debug.Log(clickCellPosition);
-            Debug.Log(tilemap.GetTile(clickCellPosition));
+            //Debug.Log(clickCellPosition);
+            //Debug.Log(tilemap.GetTile(clickCellPosition));
 
         }
     }

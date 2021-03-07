@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     private int typeName;
+    public float Health=100;
     public bool IsInfected;
     SpriteRenderer sprite;
     public Sprite engineerMaleSprite;
@@ -90,6 +91,7 @@ public class Character : MonoBehaviour
                 strength += 1;
             }
         }
+        Health += strength * 5;
     }
     //Update is called once per frame
     void Update()

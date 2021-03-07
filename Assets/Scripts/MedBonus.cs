@@ -15,7 +15,6 @@ public class MedBonus : MonoBehaviour
     void Start()
     {
         spawnBonus = true;
- 
 
         Invoke("SpawnBonus", 10f);
     }
@@ -24,7 +23,7 @@ public class MedBonus : MonoBehaviour
         if (spawnBonus)
         {
             GameObject med = Instantiate<GameObject>(medPrefab);
-            med.transform.position = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f)); 
+            med.transform.position = new Vector2(Random.Range(-3f, 3f), Random.Range(-0.7f, 0.7f)); 
             Invoke("SpawnBonus", secondsBetweenBonus);  
         }
     }
@@ -32,7 +31,7 @@ public class MedBonus : MonoBehaviour
     {
         if (!PauseMenu.IsPaused)
         {
-            medPosition = new Vector2(Random.Range(-7f, 7f), Random.Range(-4f, 4f));
+            medPosition = new Vector2(Random.Range(-3f, 3f), Random.Range(-0.7f, 0.7f));
             if (!spawnBonus)
             {
                 spawnBonus = true;

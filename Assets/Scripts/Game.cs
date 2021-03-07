@@ -6,7 +6,8 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public float GameProgress;
-    public GameObject ProgressBar;
+    public GameObject ProgressBar; 
+    public GameObject Collider;
     private int rand;
     private int st;
     // Start is called before the first frame update
@@ -50,6 +51,7 @@ public class Game : MonoBehaviour
             {
                 crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0.5f);
                 crew[i].GetComponent<Character>().IsInfected = true;
+                crew[i].AddComponent<Infected>();
                 Debug.Log(crew[i]);
             }
 
