@@ -8,12 +8,18 @@ public class Game : MonoBehaviour
     public float GameProgress;
     public GameObject ProgressBar; 
     public GameObject Collider;
-    private int rand;
+    //private int rand;
+    public int DangerousAge;
+    public string DangerousGender;
+    public bool BiggerAge;
     private int st;
     // Start is called before the first frame update
     void Start()
     {
         st = 1;
+        DangerousAge = 30;
+        BiggerAge = (Random.value > 0.5f);
+        Debug.Log(BiggerAge);
         GameProgress = 0f;  
     }
     // Update is called once per frame
@@ -49,6 +55,11 @@ public class Game : MonoBehaviour
                 crew[i].GetComponent<Character>().transform.position = Coordinates[i];
             else
             {
+                if (crew[i].GetComponent<Character>().age > DangerousAge)
+                    BiggerAge = true;
+                else
+                    BiggerAge = false;
+                DangerousGender = crew[i].GetComponent<Character>().gender;
                 crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0.5f);
                 crew[i].GetComponent<Character>().IsInfected = true;
                 crew[i].AddComponent<Infected>();
