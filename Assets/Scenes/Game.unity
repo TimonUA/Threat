@@ -718,10 +718,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d47ccce449666547aad66cd923e7986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemap: {fileID: 1601994000}
   GameProgress: 0
   ProgressBar: {fileID: 1020578178}
   Collider: {fileID: 6577326309344247212, guid: b0703cddc1e2a1e409810fbf4814e553,
     type: 3}
+  DangerousAge: 0
+  DangerousGender: 
+  BiggerAge: 0
 --- !u!1 &656355784
 GameObject:
   m_ObjectHideFlags: 0

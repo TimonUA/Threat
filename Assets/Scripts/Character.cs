@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    //public string nick;
     public string gender;
     public string role;
     public int age;
@@ -13,8 +12,12 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     private int typeName;
-    public float Health=100;
+    public float health = 100;
     public bool IsInfected;
+    //public bool IsPatrol;
+    public Vector3 startPosition;
+    public Vector3 gatePosition;
+    public Vector3 endPosition;
     SpriteRenderer sprite;
     public Sprite engineerMaleSprite;
     public Sprite medicMaleSprite;
@@ -45,7 +48,7 @@ public class Character : MonoBehaviour
         if (rand == 0)
         {
             role = "Engineer";
-            if(gender=="Male")
+            if (gender == "Male")
             {
                 sprite.sprite = engineerMaleSprite;
             }
@@ -78,7 +81,7 @@ public class Character : MonoBehaviour
                 sprite.sprite = explorerFemaleSprite;
             }
         }
-            for (int i = 0; i < maxStats; i++)
+        for (int i = 0; i < maxStats; i++)
         {
             rand = Random.Range(0, 2);
 
@@ -91,11 +94,12 @@ public class Character : MonoBehaviour
                 strength += 1;
             }
         }
-        Health += strength * 5;
+        health += strength * 5;
     }
     //Update is called once per frame
     void Update()
     {
-
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

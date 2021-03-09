@@ -22,7 +22,7 @@ public class Infected : MonoBehaviour
         gameObject.AddComponent<Rigidbody2D>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         gameObject.GetComponent<CircleCollider2D>().radius = 2.6f;
-        InvokeRepeating("Disease", 0f, 2f);  
+        InvokeRepeating("Disease", 0f, 1f);  
     }
 
     // Update is called once per frame

@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
+    private GameObject[] crew;
+    public Tilemap tilemap;
     public float GameProgress;
     public GameObject ProgressBar; 
     public GameObject Collider;
@@ -13,22 +16,27 @@ public class Game : MonoBehaviour
     public string DangerousGender;
     public bool BiggerAge;
     private int st;
+    private int rand;
     // Start is called before the first frame update
     void Start()
     {
-        st = 1;
+        st = 2;
         DangerousAge = 30;
         BiggerAge = (Random.value > 0.5f);
-        Debug.Log(BiggerAge);
         GameProgress = 0f;  
     }
     // Update is called once per frame
     void Update()
     {
+        if(st==2)
+        {
+            crew = GameObject.FindGameObjectsWithTag("Character");
+            SetCoordinates(crew);
+            st = 1;
+        }
         if(st==1)
         {
-            GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
-            SetCoordinates(crew);
+            Invoke("Test", 2f);
             st = 0;
         }
         if (Input.GetMouseButtonDown(0))
@@ -43,16 +51,31 @@ public class Game : MonoBehaviour
                 }
             }
         }
+       
         //GameProgress += 0.001f;
         ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
     }
+    public void Test()
+    {
+        crew = GameObject.FindGameObjectsWithTag("Character");
+        rand = Random.Range(0, crew.Length);
+        crew[rand].AddComponent<Patrol>();
+    }
     void SetCoordinates(GameObject[] crew)
     {
-        Vector2[] Coordinates= new Vector2[] {new Vector2(6.0f, -1f), new Vector2(-5f, -1.5f), new Vector2(4.35f, 2.35f), new Vector2(3f, -2.5f), new Vector2(-3.3f, 2.75f), new Vector2(-3f, -2.5f) };
+        Vector2[] Coordinates= new Vector2[] { new Vector2(4.35f, 2.35f), new Vector2(4f, -2f), new Vector2(-3.3f, 2.75f), new Vector2(-4f, -2f) };
+        Vector2[] GateCoordinates= new Vector2[] { new Vector2(3f, 1.6f), new Vector2(2f, -1f), new Vector2(-2f, 2f), new Vector2(-2f, -1f) };
+        Vector2[] EndCoordinates= new Vector2[] { new Vector2(2f, 1f), new Vector2(1f, -0.4f), new Vector2(-1f, 1.6f), new Vector2(-1f, -0.4f) };
+
         for (int i=0;i<crew.Length;i++)
         {
-            if(i<Coordinates.Length)
+            if (i < Coordinates.Length)
+            {
                 crew[i].GetComponent<Character>().transform.position = Coordinates[i];
+                crew[i].GetComponent<Character>().startPosition = crew[i].GetComponent<Character>().transform.position;
+                crew[i].GetComponent<Character>().gatePosition = GateCoordinates[i];
+                crew[i].GetComponent<Character>().endPosition = EndCoordinates[i];
+            }
             else
             {
                 if (crew[i].GetComponent<Character>().age > DangerousAge)
