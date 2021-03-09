@@ -5,7 +5,8 @@ using UnityEngine;
 public class Infected : MonoBehaviour
 {
     private bool IsCollision;
-    private float ChanceToInfect;
+    private float ChanceToInfect=0.002f;
+    private float randN;
     private int rand;
     private List<GameObject> UnderThreat=new List<GameObject>();
     // Start is called before the first frame update
@@ -36,12 +37,14 @@ public class Infected : MonoBehaviour
     {
         if (IsCollision)
         {
-            ChanceToInfect = Random.value;
             for (int i=0;i<UnderThreat.Count;i++)
             {
-                if (ChanceToInfect < 0.2)
+                randN = Random.value;
+                Debug.Log(ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.0001f);
+                if (randN <= ChanceToInfect-UnderThreat[i].GetComponent<Character>().intelligence*0.0001f)
                 {
-                    rand = Random.Range(0, UnderThreat.Count);
+                    
+                    //rand = Random.Range(0, UnderThreat.Count);
                     UnderThreat[i].GetComponent<Character>().IsInfected = true;
                     UnderThreat[i].AddComponent<Infected>();
                     if (UnderThreat.Count > 1)
