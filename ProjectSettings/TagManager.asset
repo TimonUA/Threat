@@ -9,6 +9,8 @@ TagManager:
   - Infected
   - FloorMap
   - CharacterInfo
+  - InfectedCollider
+  - CharacterCollider
   layers:
   - Default
   - TransparentFX

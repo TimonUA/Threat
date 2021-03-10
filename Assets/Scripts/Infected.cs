@@ -18,7 +18,8 @@ public class Infected : MonoBehaviour
         //st = 1;
         mainCamera = Camera.main;
         IsCollision = false;
-        gameObject.tag = "Infected";
+        gameObject.transform.parent.tag = "Infected";
+        gameObject.tag = "InfectedCollider";
         gameObject.AddComponent<Rigidbody2D>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         gameObject.GetComponent<CircleCollider2D>().radius = 2.6f;
@@ -54,7 +55,7 @@ public class Infected : MonoBehaviour
                 { 
                     //rand = Random.Range(0, UnderThreat.Count);
                     UnderThreat[i].GetComponent<Character>().IsInfected = true;
-                    UnderThreat[i].AddComponent<Infected>();
+                    UnderThreat[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
                     if (UnderThreat.Count > 1)
                     {
                         UnderThreat.Remove(UnderThreat[i]);
@@ -71,24 +72,24 @@ public class Infected : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Character")
+        if (collider.tag == "CharacterCollider")
         {
             IsCollision = true;
-            UnderThreat.Add(collider.gameObject);
+            UnderThreat.Add(collider.gameObject.transform.parent.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Character")
+        if (collider.tag == "CharacterCollider")
         {            
             if(UnderThreat.Count>1)
             {             
-                UnderThreat.Remove(collider.gameObject);
+                UnderThreat.Remove(collider.gameObject.transform.parent.gameObject);
             }
             else
             {
                 IsCollision = false;
-                UnderThreat.Remove(collider.gameObject);
+                UnderThreat.Remove(collider.gameObject.transform.parent.gameObject);
             }
         }
     }

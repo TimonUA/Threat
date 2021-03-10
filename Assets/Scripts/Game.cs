@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     public HealthBar HealthBar;
     public GameObject Collider;
     private GameObject hitObject;
+    private GameObject lastObject;
     public string[] FirstMovementStr;
     public string[] LastMovementStr;
     public string DangerousGender;
@@ -23,9 +24,7 @@ public class Game : MonoBehaviour
     public Tilemap tilemap;
     public TileBase tile;
     public float GameProgress;
-    //private int rand;
     public bool BiggerAge;
-    private bool IsWork;
     public int DangerousAge;
     private int st;
     private int rand;
@@ -33,7 +32,6 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        IsWork = false;
         st = 2;
         DangerousAge = 30;
         BiggerAge = (Random.value > 0.5f);
@@ -66,24 +64,23 @@ public class Game : MonoBehaviour
                 }
                 else if(hitObject.tag == "Character")
                 {
-                    //hit.collider.gameObject.GetComponent<Character>().IsChoosen = true;
+                    lastObject = hitObject;
                     CharacterInfo.SetActive(true);
                     characterName.text = hitObject.name;
                     characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";
                     characterGender.text = $"Gender: {hitObject.GetComponent<Character>().gender}";
                     characterStatus.text ="Healthy";
                     HealthBar.SetMaxHealth(hitObject.GetComponent<Character>().maxHealth);
-                    IsWork = true;
                 }
                 else if(hitObject.tag == "Infected")
                 {
+                    lastObject = hitObject;
                     CharacterInfo.SetActive(true);
                     characterName.text = hitObject.name;
                     characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";
                     characterGender.text = $"Gender: {hitObject.GetComponent<Character>().gender}";
                     characterStatus.text = "Infect";
                     HealthBar.SetMaxHealth(hitObject.GetComponent<Character>().maxHealth);
-                    IsWork = true;
                 }
             }
             else
@@ -91,9 +88,9 @@ public class Game : MonoBehaviour
         }
 
         //GameProgress += 0.001f;
-        if (CharacterInfo.activeSelf && IsWork && hitObject)
+        if (CharacterInfo.activeSelf && lastObject!=null)
         {
-            HealthBar.SetCurrentHealth(hitObject.GetComponent<Character>().health);
+            HealthBar.SetCurrentHealth(lastObject.GetComponent<Character>().health);
         }
         ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
     }
@@ -139,9 +136,8 @@ public class Game : MonoBehaviour
                     BiggerAge = false;
                 DangerousGender = crew[i].GetComponent<Character>().gender;
                 crew[i].GetComponent<Character>().transform.position = new Vector2(0f, 0.5f);
-                crew[i].GetComponent<Character>().IsInfected = true;
-                crew[i].AddComponent<Infected>();
-                Debug.Log(crew[i]);
+                crew[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
+                //Debug.Log(crew[i]);
             }
 
         }

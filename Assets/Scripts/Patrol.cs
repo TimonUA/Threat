@@ -30,7 +30,7 @@ public class Patrol : MonoBehaviour
         texture = gameObject.GetComponent<Character>().mainSprite.name;
         FirstMovementStr = texture.Replace("SE", FirstMovementStr);
         LastMovementStr = texture.Replace("SE", LastMovementStr);
-        Debug.Log(texture);
+        //Debug.Log(texture);
         waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition };
         current = 0;
         speed = 2;
