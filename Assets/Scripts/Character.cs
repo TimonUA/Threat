@@ -19,6 +19,9 @@ public class Character : MonoBehaviour
     public Vector3 gatePosition;
     public Vector3 endPosition;
     SpriteRenderer sprite;
+    public Sprite mainSprite;
+    public string FirstMovementSpriteStr;
+    public string LastMovementSpriteStr;
     public Sprite engineerMaleSprite;
     public Sprite medicMaleSprite;
     public Sprite explorerMaleSprite;
@@ -95,6 +98,7 @@ public class Character : MonoBehaviour
             }
         }
         health += strength * 5;
+        mainSprite = sprite.sprite;
     }
     //Update is called once per frame
     void Update()

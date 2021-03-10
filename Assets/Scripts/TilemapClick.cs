@@ -19,7 +19,7 @@ public class TilemapClick : MonoBehaviour
     {
         tilemap = GetComponent<Tilemap>();
         mainCamera = Camera.main;
-        TilePositionNW1 = new Vector3Int(-3, 0, 0);
+        TilePositionNW1 = new Vector3Int(-3, -1, 0);
         TilePositionNW2 = new Vector3Int(2, -1, 0);
         TilePositionSW1 = new Vector3Int(0, 2, 0);
         TilePositionSW2 = new Vector3Int(-1, -3, 0);

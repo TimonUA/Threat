@@ -105,8 +105,11 @@ MonoBehaviour:
   age: 0
   intelligence: 0
   strength: 0
-  Health: 100
+  health: 100
   IsInfected: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  gatePosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 0}
   engineerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
   medicMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
   explorerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}

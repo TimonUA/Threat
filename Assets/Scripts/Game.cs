@@ -7,7 +7,10 @@ using UnityEngine.Tilemaps;
 public class Game : MonoBehaviour
 {
     private GameObject[] crew;
+    public string[] FirstMovementStr;
+    public string[] LastMovementStr;
     public Tilemap tilemap;
+    public TileBase tile;
     public float GameProgress;
     public GameObject ProgressBar; 
     public GameObject Collider;
@@ -17,6 +20,7 @@ public class Game : MonoBehaviour
     public bool BiggerAge;
     private int st;
     private int rand;
+    private int lastPatrolCrew;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +40,7 @@ public class Game : MonoBehaviour
         }
         if(st==1)
         {
-            Invoke("Test", 2f);
+            Invoke("Patrol", 2f);
             st = 0;
         }
         if (Input.GetMouseButtonDown(0))
@@ -55,18 +59,27 @@ public class Game : MonoBehaviour
         //GameProgress += 0.001f;
         ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
     }
-    public void Test()
-    {
+    public void Patrol()
+    { 
         crew = GameObject.FindGameObjectsWithTag("Character");
         rand = Random.Range(0, crew.Length);
-        crew[rand].AddComponent<Patrol>();
+        if (rand != lastPatrolCrew)
+        {
+            lastPatrolCrew = rand;
+            crew[rand].AddComponent<Patrol>();
+        }
+        else
+        {
+            while(rand==lastPatrolCrew)
+                rand = Random.Range(0, crew.Length);
+            crew[rand].AddComponent<Patrol>();
+        }
     }
     void SetCoordinates(GameObject[] crew)
     {
         Vector2[] Coordinates= new Vector2[] { new Vector2(4.35f, 2.35f), new Vector2(4f, -2f), new Vector2(-3.3f, 2.75f), new Vector2(-4f, -2f) };
         Vector2[] GateCoordinates= new Vector2[] { new Vector2(3f, 1.6f), new Vector2(2f, -1f), new Vector2(-2f, 2f), new Vector2(-2f, -1f) };
         Vector2[] EndCoordinates= new Vector2[] { new Vector2(2f, 1f), new Vector2(1f, -0.4f), new Vector2(-1f, 1.6f), new Vector2(-1f, -0.4f) };
-
         for (int i=0;i<crew.Length;i++)
         {
             if (i < Coordinates.Length)
@@ -75,6 +88,10 @@ public class Game : MonoBehaviour
                 crew[i].GetComponent<Character>().startPosition = crew[i].GetComponent<Character>().transform.position;
                 crew[i].GetComponent<Character>().gatePosition = GateCoordinates[i];
                 crew[i].GetComponent<Character>().endPosition = EndCoordinates[i];
+                crew[i].GetComponent<Character>().FirstMovementSpriteStr = FirstMovementStr[i];
+                crew[i].GetComponent<Character>().LastMovementSpriteStr = LastMovementStr[i];
+                //crew[i].GetComponent<Character>().FirstMovementSprite = FirstMovement[i];
+                //crew[i].GetComponent<Character>().LastMovementSprite = LastMovement[i];
             }
             else
             {

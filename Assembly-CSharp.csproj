@@ -692,6 +692,24 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
