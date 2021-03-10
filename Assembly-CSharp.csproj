@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\FillBar.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\Generator.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Infected.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Med.cs" />
@@ -614,8 +615,14 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
@@ -632,11 +639,17 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
@@ -677,6 +690,12 @@
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -691,24 +710,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.CacheServer">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables.Editor">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>D:/Unity/Unity Projects/Threat/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

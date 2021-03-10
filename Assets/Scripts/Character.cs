@@ -6,22 +6,22 @@ public class Character : MonoBehaviour
 {
     public string gender;
     public string role;
+    public string FirstMovementSpriteStr;
+    public string LastMovementSpriteStr;
     public int age;
     public int intelligence;
     public int strength;
     private int maxStats = 10;
     private int rand;
     private int typeName;
-    public float health = 100;
+    public float health;
+    public float maxHealth = 100;
     public bool IsInfected;
-    //public bool IsPatrol;
     public Vector3 startPosition;
     public Vector3 gatePosition;
     public Vector3 endPosition;
-    SpriteRenderer sprite;
+    private SpriteRenderer sprite;
     public Sprite mainSprite;
-    public string FirstMovementSpriteStr;
-    public string LastMovementSpriteStr;
     public Sprite engineerMaleSprite;
     public Sprite medicMaleSprite;
     public Sprite explorerMaleSprite;
@@ -97,7 +97,8 @@ public class Character : MonoBehaviour
                 strength += 1;
             }
         }
-        health += strength * 5;
+        maxHealth += strength * 5;
+        health = maxHealth;
         mainSprite = sprite.sprite;
     }
     //Update is called once per frame

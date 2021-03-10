@@ -3,27 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
     private GameObject[] crew;
+    public GameObject CharacterInfo;
+    public GameObject ProgressBar;
+    public HealthBar HealthBar;
+    public GameObject Collider;
+    private GameObject hitObject;
     public string[] FirstMovementStr;
     public string[] LastMovementStr;
+    public string DangerousGender;
+    public Text characterName;
+    public Text characterAge;
+    public Text characterGender;
+    public Text characterStatus;
     public Tilemap tilemap;
     public TileBase tile;
     public float GameProgress;
-    public GameObject ProgressBar; 
-    public GameObject Collider;
     //private int rand;
-    public int DangerousAge;
-    public string DangerousGender;
     public bool BiggerAge;
+    private bool IsWork;
+    public int DangerousAge;
     private int st;
     private int rand;
     private int lastPatrolCrew;
     // Start is called before the first frame update
     void Start()
     {
+        IsWork = false;
         st = 2;
         DangerousAge = 30;
         BiggerAge = (Random.value > 0.5f);
@@ -48,15 +58,43 @@ public class Game : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Med")
+                hitObject = hit.collider.gameObject;
+                if (hitObject.tag == "Med")
                 {
                     GameProgress += 0.25f;
-                    Destroy(hit.collider.gameObject);
+                    Destroy(hitObject);
+                }
+                else if(hitObject.tag == "Character")
+                {
+                    //hit.collider.gameObject.GetComponent<Character>().IsChoosen = true;
+                    CharacterInfo.SetActive(true);
+                    characterName.text = hitObject.name;
+                    characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";
+                    characterGender.text = $"Gender: {hitObject.GetComponent<Character>().gender}";
+                    characterStatus.text ="Healthy";
+                    HealthBar.SetMaxHealth(hitObject.GetComponent<Character>().maxHealth);
+                    IsWork = true;
+                }
+                else if(hitObject.tag == "Infected")
+                {
+                    CharacterInfo.SetActive(true);
+                    characterName.text = hitObject.name;
+                    characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";
+                    characterGender.text = $"Gender: {hitObject.GetComponent<Character>().gender}";
+                    characterStatus.text = "Infect";
+                    HealthBar.SetMaxHealth(hitObject.GetComponent<Character>().maxHealth);
+                    IsWork = true;
                 }
             }
+            else
+                CharacterInfo.SetActive(false);
         }
-       
+
         //GameProgress += 0.001f;
+        if (CharacterInfo.activeSelf && IsWork && hitObject)
+        {
+            HealthBar.SetCurrentHealth(hitObject.GetComponent<Character>().health);
+        }
         ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
     }
     public void Patrol()
