@@ -64,7 +64,12 @@ public class Game : MonoBehaviour
                 }
                 else if(hitObject.tag == "Character")
                 {
+                    if (lastObject != null)
+                    {
+                        lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                    }
                     lastObject = hitObject;
+                    lastObject.transform.GetChild(1).gameObject.SetActive(true);
                     CharacterInfo.SetActive(true);
                     characterName.text = hitObject.name;
                     characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";
@@ -74,7 +79,12 @@ public class Game : MonoBehaviour
                 }
                 else if(hitObject.tag == "Infected")
                 {
+                    if (lastObject != null)
+                    {
+                        lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                    }
                     lastObject = hitObject;
+                    lastObject.transform.GetChild(1).gameObject.SetActive(true);
                     CharacterInfo.SetActive(true);
                     characterName.text = hitObject.name;
                     characterAge.text = $"Age: {hitObject.GetComponent<Character>().age}";

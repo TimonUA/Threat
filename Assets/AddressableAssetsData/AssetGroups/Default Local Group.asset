@@ -17,6 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 32e2a4bc13db00f429a4ba39ffa5f89d
   m_SerializeEntries:
+  - m_GUID: 12792745774ebe149860f1e80116fb2e
+    m_Address: Assets/Sprites/Space/Characters/Border_SW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 154fccd60453a3444a0be7f0e0a7ec6e
+    m_Address: Assets/Sprites/Space/Characters/Border_NW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 17be424ee17014b4ab693e32212ddbc1
     m_Address: Assets/Sprites/Space/Characters/astronautA_SW.png
     m_ReadOnly: 0
@@ -35,8 +47,20 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 5e6275d4d3d08144a882c16b9fd6c55a
+    m_Address: Assets/Sprites/Space/Characters/Border_NE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 5fa0d53e9147cdf4c92756a9bb41bd8b
     m_Address: Assets/Sprites/Space/Characters/astronautA_SE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b53eff0793fb49546afd60ad5af78549
+    m_Address: Assets/Sprites/Space/Characters/Border_SE.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
