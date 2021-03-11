@@ -14,10 +14,13 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     private int typeName;
+    //public float GameProgress;
     public float workTime;
+    private float workCount = 0.002f;
     public float health;
     public float maxHealth = 100;
     public bool IsInfected;
+    public bool IsWork;
     public Vector3 startPosition;
     public Vector3 gatePosition;
     public Vector3 endPosition;
@@ -106,7 +109,32 @@ public class Character : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-            Destroy(gameObject);
+        if (!PauseMenu.IsPaused)
+        {
+            if (health <= 0)
+                Destroy(gameObject);
+            if (workTime > 0)
+            {
+                Camera.main.gameObject.GetComponent<Game>().GameProgress += Work();
+                workTime -= Time.deltaTime;
+            }
+        }
+    }
+    private float Work()
+    {
+        if(!IsInfected)
+        {
+            if (role == "Medic")
+                return workCount;
+            else
+                return workCount / 1.5f;
+        }
+        else 
+        {
+            if (role == "Medic")
+                return workCount/2f;
+            else
+                return workCount / 3f;
+        }
     }
 }

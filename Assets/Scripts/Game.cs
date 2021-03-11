@@ -79,14 +79,19 @@ public class Game : MonoBehaviour
                         if (lastObject != null)
                         {
                             lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                            CharacterInfo.SetActive(false);
                         }
                     }
                 }
                 else
                 {
-                    CharacterInfo.SetActive(false);
+                    
                     if(lastObject != null)
+                    {
+                        CharacterInfo.SetActive(false);
                         lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                        
                 }
             }
 

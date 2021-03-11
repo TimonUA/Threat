@@ -5,8 +5,6 @@ using UnityEngine;
 public class Infected : MonoBehaviour
 {
     private bool IsCollision;
-    private float workCount=0.02f;
-    private float currentWork;
     private float ChanceToInfect=0.02f;
     private float randN;
     private float ageChance;
@@ -18,7 +16,6 @@ public class Infected : MonoBehaviour
     void Start()
     {
         //st = 1;
-        currentWork = 0;
         mainCamera = Camera.main;
         IsCollision = false;
         gameObject.transform.parent.tag = "Infected";
@@ -66,6 +63,7 @@ public class Infected : MonoBehaviour
         {
             for (int i=0;i<UnderThreat.Count;i++)
             {
+                UnderThreat[i].GetComponent<Character>().workTime = 1f;
                 randN = Random.value;
                 AgeImpact(UnderThreat[i].GetComponent<Character>().age);
                 GenderImpact(UnderThreat[i].GetComponent<Character>().gender);
@@ -90,14 +88,6 @@ public class Infected : MonoBehaviour
             //Debug.Log(UnderThreat.Count);
         }
     }
-    private void Work(Character worker)
-    {
-        float work;
-            if (worker.role == "Medic")
-                work = workCount;
-            else
-                work = workCount / 1.5f;
-    }
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "CharacterCollider")
@@ -117,7 +107,7 @@ public class Infected : MonoBehaviour
             else
             {
                 IsCollision = false;
-                //UnderThreat.Remove(collider.gameObject.transform.parent.gameObject);
+                UnderThreat.Remove(collider.gameObject.transform.parent.gameObject);
             }
         }
     }
