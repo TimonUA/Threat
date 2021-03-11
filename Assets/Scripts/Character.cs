@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     private int typeName;
+    public float workTime;
     public float health;
     public float maxHealth = 100;
     public bool IsInfected;
@@ -97,6 +98,7 @@ public class Character : MonoBehaviour
                 strength += 1;
             }
         }
+        workTime = 0f;
         maxHealth += strength * 5;
         health = maxHealth;
         mainSprite = sprite.sprite;

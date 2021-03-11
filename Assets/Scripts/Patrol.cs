@@ -10,9 +10,9 @@ public class Patrol : MonoBehaviour
     private Vector3[] waypoints;
     private Vector3Int cellPosition;
     private Vector2 GateCoordinates;
+    private bool IsPatrol;
     private int current;
     public float speed;
-    private bool IsPatrol;
     public float TimeInCheck = 3f;
     private float downTime = 0.1f;
     private Camera mainCamera;
@@ -30,7 +30,6 @@ public class Patrol : MonoBehaviour
         texture = gameObject.GetComponent<Character>().mainSprite.name;
         FirstMovementStr = texture.Replace("SE", FirstMovementStr);
         LastMovementStr = texture.Replace("SE", LastMovementStr);
-        //Debug.Log(texture);
         waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition };
         current = 0;
         speed = 2;
@@ -46,40 +45,43 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patroling();
-        if (TimeInCheck > 0 && downTime > 0)
+        if (!PauseMenu.IsPaused)
         {
-            if (transform.position == waypoints[2])
+            Patroling();
+            if (TimeInCheck > 0 && downTime > 0)
             {
-                IsPatrol = false;
-                TimeInCheck -= Time.deltaTime;
+                if (transform.position == waypoints[2])
+                {
+                    IsPatrol = false;
+                    TimeInCheck -= Time.deltaTime;
+                }
+                if (transform.position == waypoints[0] && tilemap.GetTile(cellPosition) == tile)
+                {
+                    downTime -= Time.deltaTime;
+                }
+                if (tilemap.GetTile(cellPosition) == tile && transform.position != waypoints[2] && transform.position != waypoints[0])
+                {
+                    LoadTexture(LastMovementStr);
+                }
+                else if (tilemap.GetTile(cellPosition) != tile)
+                {
+                    LoadTexture(FirstMovementStr);
+                }
             }
-            if(transform.position == waypoints[0] && tilemap.GetTile(cellPosition) == tile)
+            else
             {
-                downTime -= Time.deltaTime;
-            }
-            if (tilemap.GetTile(cellPosition) == tile && transform.position != waypoints[2] && transform.position != waypoints[0])
-            {
-                LoadTexture(LastMovementStr);
-            }
-            else if(tilemap.GetTile(cellPosition) != tile)
-            {
-                LoadTexture(FirstMovementStr);
-            }
-        }
-        else
-        {
-            IsPatrol = true;
-            if(transform.position==waypoints[0])
-            {
-                IsPatrol = false;
-                LoadTexture();
-                Destroy(this);
-                game.Patrol();
-            }
-            else 
-            {
-                LoadTexture(LastMovementStr);
+                IsPatrol = true;
+                if (transform.position == waypoints[0])
+                {
+                    IsPatrol = false;
+                    LoadTexture();
+                    Destroy(this);
+                    game.Patrol();
+                }
+                else
+                {
+                    LoadTexture(LastMovementStr);
+                }
             }
         }
     }
@@ -92,7 +94,7 @@ public class Patrol : MonoBehaviour
             else
                 current = (current + 1) % waypoints.Length;
         }
-        else if(IsPatrol)
+        else if(IsPatrol && current!=2)
         {
             if (transform.position != waypoints[2] && transform.position != waypoints[1])
                 transform.position = Vector3.MoveTowards(transform.position, waypoints[0], speed * Time.deltaTime);
