@@ -11,6 +11,8 @@ TagManager:
   - CharacterInfo
   - InfectedCollider
   - CharacterCollider
+  - CharacterBorder
+  - MainInfected
   layers:
   - Default
   - TransparentFX

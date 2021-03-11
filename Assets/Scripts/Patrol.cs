@@ -22,6 +22,7 @@ public class Patrol : MonoBehaviour
     private string FirstMovementStr;
     private string LastMovementStr;
     private string texture;
+    private int st;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +31,10 @@ public class Patrol : MonoBehaviour
         texture = gameObject.GetComponent<Character>().mainSprite.name;
         FirstMovementStr = texture.Replace("SE", FirstMovementStr);
         LastMovementStr = texture.Replace("SE", LastMovementStr);
-        waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition };
         current = 0;
         speed = 2;
+        st = 1;
+        waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition };
         IsPatrol = true;
         mainCamera = Camera.main;
         game = mainCamera.GetComponent<Game>();
@@ -47,47 +49,69 @@ public class Patrol : MonoBehaviour
     {
         if (!PauseMenu.IsPaused)
         {
-            Patroling();
-            if (TimeInCheck > 0 && downTime > 0)
+            if (gameObject.tag != "MainInfected")
             {
-                if (transform.position == waypoints[2])
+                Patroling();
+                if (TimeInCheck > 0 && downTime > 0)
                 {
-                    IsPatrol = false;
-                    TimeInCheck -= Time.deltaTime;
+                    if (transform.position == waypoints[2])
+                    {
+                        IsPatrol = false;
+                        TimeInCheck -= Time.deltaTime;
+                    }
+                    if (transform.position == waypoints[0] && tilemap.GetTile(cellPosition) == tile)
+                    {
+                        downTime -= Time.deltaTime;
+                    }
+                    if (tilemap.GetTile(cellPosition) == tile && current == 0 && transform.position != waypoints[0])
+                    {
+                        LoadTexture(LastMovementStr);
+                    }
+                    else if (tilemap.GetTile(cellPosition) != tile)
+                    {
+                        LoadTexture(FirstMovementStr);
+                    }
                 }
-                if (transform.position == waypoints[0] && tilemap.GetTile(cellPosition) == tile)
+                else
                 {
-                    downTime -= Time.deltaTime;
-                }
-                if (tilemap.GetTile(cellPosition) == tile && transform.position != waypoints[2] && transform.position != waypoints[0])
-                {
-                    LoadTexture(LastMovementStr);
-                }
-                else if (tilemap.GetTile(cellPosition) != tile)
-                {
-                    LoadTexture(FirstMovementStr);
+                    IsPatrol = true;
+                    if (transform.position == waypoints[0])
+                    {
+                        IsPatrol = false;
+                        LoadTexture();
+                        Destroy(this);
+                        game.Patrol();
+                    }
+                    else
+                    {
+                        LoadTexture(LastMovementStr);
+                    }
                 }
             }
             else
             {
-                IsPatrol = true;
-                if (transform.position == waypoints[0])
+                IsPatrol = false;
+                if (st == 1)
                 {
-                    IsPatrol = false;
-                    LoadTexture();
-                    Destroy(this);
-                    game.Patrol();
+                    if (transform.position == waypoints[0])
+                        current = 0;
+                    else if (transform.position == waypoints[1])
+                        current = 1;
+                    else
+                        current = 2;
+                    st = 0;
                 }
-                else
+                if (tilemap.GetTile(cellPosition) != tile)
                 {
-                    LoadTexture(LastMovementStr);
+                    LoadTexture(FirstMovementStr);
                 }
+                GoToCenter();
             }
         }
     }
     void Patroling()
     {
-        if (IsPatrol && tilemap.GetTile(cellPosition) != tile)
+        if (IsPatrol && (tilemap.GetTile(cellPosition) != tile || current > 1))
         {
             if (transform.position != waypoints[current])
                 transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
@@ -96,8 +120,29 @@ public class Patrol : MonoBehaviour
         }
         else if(IsPatrol && current!=2)
         {
+            current = 0;
             if (transform.position != waypoints[2] && transform.position != waypoints[1])
-                transform.position = Vector3.MoveTowards(transform.position, waypoints[0], speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
+        }
+    }
+    void GoToCenter()
+    {
+        waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition, new Vector3(0f,0.5f)};
+        if (transform.position != waypoints[3])
+        {
+            if (tilemap.GetTile(cellPosition) != tile)
+            {
+                if (transform.position != waypoints[current])
+                    transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
+                else
+                    current = (current + 1) % waypoints.Length;
+            }
+        }
+        else
+        {
+            LoadTexture();
+            Destroy(this);
+            game.Patrol();
         }
     }
     void LoadTexture()

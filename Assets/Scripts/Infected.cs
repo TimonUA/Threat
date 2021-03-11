@@ -18,7 +18,7 @@ public class Infected : MonoBehaviour
         //st = 1;
         mainCamera = Camera.main;
         IsCollision = false;
-        gameObject.transform.parent.tag = "Infected";
+        gameObject.transform.parent.GetComponent<Character>().IsInfected = true;
         gameObject.tag = "InfectedCollider";
         gameObject.AddComponent<Rigidbody2D>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -90,7 +90,7 @@ public class Infected : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "CharacterCollider")
+        if (collider.tag == "CharacterCollider" || collider.tag == "InfectedCollider")
         {
             IsCollision = true;
             UnderThreat.Add(collider.gameObject.transform.parent.gameObject);
@@ -98,7 +98,7 @@ public class Infected : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "CharacterCollider")
+        if (collider.tag == "CharacterCollider" || collider.tag == "InfectedCollider")
         {            
             if(UnderThreat.Count>1)
             {             

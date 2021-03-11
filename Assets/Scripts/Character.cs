@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     public float workTime;
     private float workCount = 0.002f;
     public float health;
-    public float maxHealth = 100;
+    public float maxHealth = 100f;
     public bool IsInfected;
     public bool IsWork;
     public Vector3 startPosition;
@@ -102,7 +102,7 @@ public class Character : MonoBehaviour
             }
         }
         workTime = 0f;
-        maxHealth += strength * 5;
+        maxHealth += strength * 5f;
         health = maxHealth;
         mainSprite = sprite.sprite;
     }
@@ -112,11 +112,26 @@ public class Character : MonoBehaviour
         if (!PauseMenu.IsPaused)
         {
             if (health <= 0)
+            {
+               
+                Camera.main.GetComponent<Game>().CharacterInfo.SetActive(false);
                 Destroy(gameObject);
+                //if (tag == "MainInfected")
+                //{
+                //    Camera.main.GetComponent<Game>().RePosition();
+                //}
+            }
             if (workTime > 0)
             {
                 Camera.main.gameObject.GetComponent<Game>().GameProgress += Work();
                 workTime -= Time.deltaTime;
+            }
+            if(IsInfected)
+            {
+                if(!gameObject.transform.GetChild(0).TryGetComponent<Infected>(out var infected))
+                {
+                    gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
+                }
             }
         }
     }
