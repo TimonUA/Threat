@@ -87,7 +87,6 @@ public class MainInfected : MonoBehaviour
     }
     void Patroling()
     {
-        Debug.Log("!!");
         if (IsPatrol && (tilemap.GetTile(cellPosition) != tile || current > 1))
         {
             if (transform.position != waypoints[current])

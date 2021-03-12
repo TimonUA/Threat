@@ -166,7 +166,6 @@ public class Game : MonoBehaviour
     public void RePosition()
     {
         crew = GameObject.FindGameObjectsWithTag("InfectedCollider");
-        Debug.LogError(crew.Length);
         if (crew.Length > 0)
         {
             rand = Random.Range(0, crew.Length);

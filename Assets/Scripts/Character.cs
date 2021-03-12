@@ -117,9 +117,9 @@ public class Character : MonoBehaviour
                 if (gameObject.TryGetComponent<Patrol>(out var patrol) != false)
                 {
                     Destroy(gameObject.GetComponent<Patrol>());
-                    Debug.Log("Patrol Destroyed");
                     Camera.main.GetComponent<Game>().IsPatrol = false;
                     Camera.main.GetComponent<Game>().Patrol();
+                    Debug.Log("Patrol Destroyed");
                 }
                 if (gameObject.TryGetComponent<MainInfected>(out var mainInfected) != false)
                 {
@@ -129,7 +129,6 @@ public class Character : MonoBehaviour
                 Camera.main.GetComponent<Game>().crewNumb--;
                 GameObject[] infected = GameObject.FindGameObjectsWithTag("InfectedCollider");
                 GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
-                Debug.Log(infected.Length);
                 if (infected.Length == 1 && crew.Length>1)
                 {
                     Camera.main.GetComponent<Game>().End(Camera.main.GetComponent<Game>().WinMenu);
@@ -154,6 +153,7 @@ public class Character : MonoBehaviour
                 {
                     gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
                 }
+                //помінять в сложності
                 if (role == "Medic")
                     Camera.main.gameObject.GetComponent<Game>().GameProgress += Work()/1.5f;
             }
