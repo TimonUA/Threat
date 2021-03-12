@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 0\RotateNameExample.cs" />
     <Compile Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 1\TextMeshName.cs" />
     <Compile Include="Assets\Scripts\#NVJOB Name Generator\Name Generator\NVJOBNameGen.cs" />
+    <Compile Include="Assets\Scripts\Antenna.cs" />
     <Compile Include="Assets\Scripts\Border.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\FillBar.cs" />
