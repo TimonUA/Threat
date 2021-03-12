@@ -39,7 +39,7 @@ public class Infected : MonoBehaviour
                 gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
             else if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.2 && parantObject.tag == "MainInfected")
                 ChanceToInfect *= 1.5f;
-            Debug.Log(ChanceToInfect);
+            //Debug.Log(ChanceToInfect);
         }
     }
     void AgeImpact(int age)

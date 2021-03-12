@@ -112,9 +112,9 @@ public class Character : MonoBehaviour
         {
             if (health <= 0)
             {
-               if(gameObject==Camera.main.GetComponent<Game>().lastInfoObject)
+                if (gameObject == Camera.main.GetComponent<Game>().lastInfoObject)
                     Camera.main.GetComponent<Game>().CharacterInfo.SetActive(false);
-               if(gameObject.TryGetComponent<Patrol>(out var patrol)!=false)
+                if (gameObject.TryGetComponent<Patrol>(out var patrol) != false)
                 {
                     Destroy(gameObject.GetComponent<Patrol>());
                     Debug.Log("Patrol Destroyed");
@@ -127,7 +127,21 @@ public class Character : MonoBehaviour
                     Debug.Log("MainInfected Destroyed");
                 }
                 Camera.main.GetComponent<Game>().crewNumb--;
-                Destroy(gameObject);
+                GameObject[] infected = GameObject.FindGameObjectsWithTag("InfectedCollider");
+                GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
+                Debug.Log(infected.Length);
+                if (infected.Length == 1 && crew.Length>1)
+                {
+                    Camera.main.GetComponent<Game>().End(Camera.main.GetComponent<Game>().WinMenu);
+                    gameObject.SetActive(false);
+                }
+                else if(infected.Length == 1 && crew.Length == 1)
+                {
+                    Camera.main.GetComponent<Game>().End(Camera.main.GetComponent<Game>().LoseMenu);
+                    gameObject.SetActive(false);
+                }
+                else
+                    Destroy(gameObject);
             }
             if (workTime > 0)
             {

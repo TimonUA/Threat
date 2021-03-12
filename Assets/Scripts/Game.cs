@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
-    public static bool IsEnd = false;
+    public static bool IsEnd;
     private GameObject[] crew;
     public GameObject CharacterInfo;
     private GameObject MainInfectedObject;
@@ -43,6 +43,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         st = 3;
+        IsEnd = false;
         IsPatrol = false;
         //Помінять в сложності
         dangerousAge = 30;
@@ -128,8 +129,7 @@ public class Game : MonoBehaviour
             if (MainInfectedObject == null)
                 st = 1;
             ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
-            Debug.Log(IsPatrol);
-            if (GameProgress >= 100)
+            if (GameProgress >= 100 )
             {
                 End(WinMenu);
             }
@@ -166,10 +166,11 @@ public class Game : MonoBehaviour
     public void RePosition()
     {
         crew = GameObject.FindGameObjectsWithTag("InfectedCollider");
+        Debug.LogError(crew.Length);
         if (crew.Length > 0)
         {
             rand = Random.Range(0, crew.Length);
-            MainInfectedObject= crew[rand].transform.parent.gameObject;
+            MainInfectedObject = crew[rand].transform.parent.gameObject;
             crew[rand].transform.parent.gameObject.GetComponent<Character>().IsInfected = true;
             crew[rand].transform.parent.gameObject.tag = "MainInfected";
             if (crew[rand].transform.parent.gameObject.TryGetComponent<Patrol>(out var patrol))
