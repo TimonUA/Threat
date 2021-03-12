@@ -12,13 +12,15 @@ public class Infected : MonoBehaviour
     //private int st;
     private Camera mainCamera;
     private List<GameObject> UnderThreat=new List<GameObject>();
+    private GameObject parantObject;
     // Start is called before the first frame update
     void Start()
     {
         //st = 1;
         mainCamera = Camera.main;
         IsCollision = false;
-        gameObject.transform.parent.GetComponent<Character>().IsInfected = true;
+        parantObject = gameObject.transform.parent.gameObject;
+        parantObject.GetComponent<Character>().IsInfected = true;
         gameObject.tag = "InfectedCollider";
         if (!gameObject.TryGetComponent<Rigidbody2D>(out var rigidbody2D))
             gameObject.AddComponent<Rigidbody2D>();
@@ -31,11 +33,14 @@ public class Infected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.4)
-            gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
-        else if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.2)
-            ChanceToInfect *= 1.5f;
-        Debug.Log(ChanceToInfect);
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        {
+            if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.4 && parantObject.tag == "MainInfected")
+                gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
+            else if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.2 && parantObject.tag == "MainInfected")
+                ChanceToInfect *= 1.5f;
+            Debug.Log(ChanceToInfect);
+        }
     }
     void AgeImpact(int age)
     {
@@ -56,15 +61,15 @@ public class Infected : MonoBehaviour
     }
     void Threat()
     {
-        if(!PauseMenu.IsPaused)
+        if(!PauseMenu.IsPaused && !Game.IsEnd)
         {
-           gameObject.transform.parent.gameObject.GetComponent<Character>().health -= 1f;
+            parantObject.gameObject.GetComponent<Character>().health -= 1f;
         }
         
     }
     void Disease()
     {
-        if (IsCollision && !PauseMenu.IsPaused)
+        if (IsCollision && !PauseMenu.IsPaused && !Game.IsEnd)
         {
                 for (int i = 0; i < UnderThreat.Count; i++)
                 {

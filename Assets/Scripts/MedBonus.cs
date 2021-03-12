@@ -19,7 +19,7 @@ public class MedBonus : MonoBehaviour
     }
     void SpawnBonus()
     {
-        if (spawnBonus && !PauseMenu.IsPaused)
+        if (spawnBonus && !PauseMenu.IsPaused && !Game.IsEnd)
         {
             GameObject med = Instantiate<GameObject>(medPrefab);
             med.transform.position = new Vector2(Random.Range(-3f, 3f), Random.Range(-0.7f, 0.7f)); 
@@ -28,7 +28,7 @@ public class MedBonus : MonoBehaviour
     }
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
         {
             //medPosition = new Vector2(Random.Range(-3f, 3f), Random.Range(-0.7f, 0.7f));
             if (!spawnBonus)

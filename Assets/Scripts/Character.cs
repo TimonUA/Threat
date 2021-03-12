@@ -108,7 +108,7 @@ public class Character : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
         {
             if (health <= 0)
             {
@@ -118,6 +118,7 @@ public class Character : MonoBehaviour
                 {
                     Destroy(gameObject.GetComponent<Patrol>());
                     Debug.Log("Patrol Destroyed");
+                    Camera.main.GetComponent<Game>().IsPatrol = false;
                     Camera.main.GetComponent<Game>().Patrol();
                 }
                 if (gameObject.TryGetComponent<MainInfected>(out var mainInfected) != false)
@@ -125,6 +126,7 @@ public class Character : MonoBehaviour
                     Destroy(gameObject.GetComponent<MainInfected>());
                     Debug.Log("MainInfected Destroyed");
                 }
+                Camera.main.GetComponent<Game>().crewNumb--;
                 Destroy(gameObject);
             }
             if (workTime > 0)
@@ -157,7 +159,7 @@ public class Character : MonoBehaviour
             if (role == "Medic")
                 return workCount / 1.3f;
             else
-                return workCount / 2f;
+                return workCount / 1.7f;
         }
     }
 }

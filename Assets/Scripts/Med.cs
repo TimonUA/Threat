@@ -7,7 +7,7 @@ public class Med : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
         {
             Destroy(this.gameObject, LifeTimeRemain);
         }

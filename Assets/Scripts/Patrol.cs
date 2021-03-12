@@ -45,7 +45,7 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
         {        
                 Patroling();
                 if (TimeInCheck > 0 && downTime > 0)

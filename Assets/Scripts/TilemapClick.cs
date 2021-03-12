@@ -28,7 +28,7 @@ public class TilemapClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !PauseMenu.IsPaused)
+        if(Input.GetMouseButtonDown(0) && !PauseMenu.IsPaused && !Game.IsEnd)
         {
             Vector3 clickWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickCellPosition = tilemap.WorldToCell(clickWorldPosition);

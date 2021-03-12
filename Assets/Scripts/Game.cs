@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
+    public static bool IsEnd = false;
     private GameObject[] crew;
     public GameObject CharacterInfo;
     private GameObject MainInfectedObject;
     public GameObject ProgressBar;
+    public GameObject WinMenu;
+    public GameObject LoseMenu;
     public HealthBar HealthBar;
     //public GameObject Collider;
     private GameObject hitObject;
@@ -31,7 +34,8 @@ public class Game : MonoBehaviour
     public int dangerousAge;
     private int st;
     private int rand;
-    private int lastPatrolCrew;
+    public int crewNumb;
+    //private int lastPatrolCrew;
     private Vector2[] Coordinates = new Vector2[] { new Vector2(5f, 2.6f), new Vector2(4f, -2f), new Vector2(-4f, 3.1f), new Vector2(-4f, -2f) };
     private Vector2[] GateCoordinates = new Vector2[] { new Vector2(3f, 1.6f), new Vector2(2f, -1f), new Vector2(-2f, 2f), new Vector2(-2f, -1f) };
     private Vector2[] EndCoordinates = new Vector2[] { new Vector2(2f, 1f), new Vector2(1f, -0.4f), new Vector2(-1f, 1.6f), new Vector2(-1f, -0.4f) };
@@ -40,6 +44,7 @@ public class Game : MonoBehaviour
     {
         st = 3;
         IsPatrol = false;
+        //Помінять в сложності
         dangerousAge = 30;
         biggerAge = (Random.value > 0.5f);
         GameProgress = 0f;
@@ -47,11 +52,13 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !IsEnd)
         {          
+            
             if (st == 3)
             {
                 crew = GameObject.FindGameObjectsWithTag("Character");
+                crewNumb = crew.Length;
                 SetCoordinates(crew);
                 CrewCheck(crew);
                 st = 2;
@@ -75,7 +82,7 @@ public class Game : MonoBehaviour
                     hitObject = hit.collider.gameObject;
                     if (hitObject.tag == "Med")
                     {
-                        GameProgress += 0.25f;
+                        GameProgress += 0.2f;
                         Destroy(hitObject);
                     }
                     else if (hitObject.tag == "Character")
@@ -106,7 +113,6 @@ public class Game : MonoBehaviour
                         
                 }
             }
-            //GameProgress += 0.001f;
             if (CharacterInfo.activeSelf)
             {
 
@@ -122,14 +128,26 @@ public class Game : MonoBehaviour
             if (MainInfectedObject == null)
                 st = 1;
             ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
-            Debug.Log(IsPatrol);   
+            Debug.Log(IsPatrol);
+            if (GameProgress >= 100)
+            {
+                End(WinMenu);
+            }
+            if (crewNumb == 0)
+            {
+                End(LoseMenu);
+            }
         }
+    }
+    public void End(GameObject Menu)
+    {
+        Menu.SetActive(true);
+        IsEnd = true;
     }
     public void Patrol()
     {
         if (MainInfectedObject != null)
         {
-            Debug.Log("!");
             if (!IsPatrol)
             {
                 crew = GameObject.FindGameObjectsWithTag("Character");
@@ -142,7 +160,6 @@ public class Game : MonoBehaviour
         else
         {
             RePosition();
-            Debug.Log("!!!");
             Patrol();
         }
     }

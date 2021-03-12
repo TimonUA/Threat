@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Generator.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Infected.cs" />
+    <Compile Include="Assets\Scripts\LoseMenu.cs" />
     <Compile Include="Assets\Scripts\MainInfected.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Med.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Assets\Scripts\Patrol.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\TilemapClick.cs" />
+    <Compile Include="Assets\Scripts\WinMenu.cs" />
     <None Include="Assets\Sprites\Space\UI\Spritesheet\uipackSpace_sheet.xml" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\license_unity.txt" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 1\People Avatars\Designed by.txt" />

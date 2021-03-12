@@ -25,17 +25,23 @@ public class Antenna : MonoBehaviour
     // Update is called once per frame
     void ChangeTextureInFirst()
     {
-        if (tilemap.GetTile(TilePosition1) == TileToChangeSW)
-            tilemap.SetTile(TilePosition1, TileToChangeSE);
-        else
-            tilemap.SetTile(TilePosition1, TileToChangeSW);
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        {
+            if (tilemap.GetTile(TilePosition1) == TileToChangeSW)
+                tilemap.SetTile(TilePosition1, TileToChangeSE);
+            else
+                tilemap.SetTile(TilePosition1, TileToChangeSW);
+        }
        
     }
     void ChangeTextureInSecond()
     {
-        if (tilemap.GetTile(TilePosition2) == TileToChangeSE)
-            tilemap.SetTile(TilePosition2, TileToChangeSW);
-        else
-            tilemap.SetTile(TilePosition2, TileToChangeSE);
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        {
+            if (tilemap.GetTile(TilePosition2) == TileToChangeSE)
+                tilemap.SetTile(TilePosition2, TileToChangeSW);
+            else
+                tilemap.SetTile(TilePosition2, TileToChangeSE);
+        }
     }
 }

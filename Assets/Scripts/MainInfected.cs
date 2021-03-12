@@ -49,7 +49,7 @@ public class MainInfected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused)
+        if (!PauseMenu.IsPaused && !Game.IsEnd)
         {
             
                 Patroling();
@@ -81,8 +81,6 @@ public class MainInfected : MonoBehaviour
                 }
                 else
                 {
-                        //LoadTexture();
-                        //Destroy(this);
                         game.RePosition();
                 }
             }        
