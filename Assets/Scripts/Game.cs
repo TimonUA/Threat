@@ -42,13 +42,13 @@ public class Game : MonoBehaviour
         IsPatrol = false;
         dangerousAge = 30;
         biggerAge = (Random.value > 0.5f);
-        GameProgress = 0f;  
+        GameProgress = 0f;
     }
     // Update is called once per frame
     void Update()
     {
         if (!PauseMenu.IsPaused)
-        {
+        {          
             if (st == 3)
             {
                 crew = GameObject.FindGameObjectsWithTag("Character");
@@ -122,39 +122,28 @@ public class Game : MonoBehaviour
             if (MainInfectedObject == null)
                 st = 1;
             ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
-            //if(!GameObject.FindGameObjectWithTag("MainInfected"))
-            //{
-            //    RePosition();
-            //}
+            Debug.Log(IsPatrol);   
         }
     }
     public void Patrol()
     {
-        Debug.Log("Patrol");
         if (MainInfectedObject != null)
         {
+            Debug.Log("!");
             if (!IsPatrol)
             {
                 crew = GameObject.FindGameObjectsWithTag("Character");
                 rand = Random.Range(0, crew.Length);
-                //if (rand != lastPatrolCrew)
-                //{
-                lastPatrolCrew = rand;
+                //lastPatrolCrew = rand;
                 crew[rand].AddComponent<Patrol>();
                 IsPatrol = true;
-                //}
-                //else
-                //{
-                //    while (rand == lastPatrolCrew)
-                //        rand = Random.Range(0, crew.Length);
-                //    crew[rand].AddComponent<Patrol>();
-                //    IsPatrol = true;
-                //}
             }
         }
         else
         {
-                RePosition();
+            RePosition();
+            Debug.Log("!!!");
+            Patrol();
         }
     }
     public void RePosition()
@@ -166,8 +155,12 @@ public class Game : MonoBehaviour
             MainInfectedObject= crew[rand].transform.parent.gameObject;
             crew[rand].transform.parent.gameObject.GetComponent<Character>().IsInfected = true;
             crew[rand].transform.parent.gameObject.tag = "MainInfected";
-            if (!crew[rand].transform.parent.gameObject.TryGetComponent<Patrol>(out var patrol))
-                crew[rand].transform.parent.gameObject.AddComponent<Patrol>();
+            if (crew[rand].transform.parent.gameObject.TryGetComponent<Patrol>(out var patrol))
+            {
+                Destroy(crew[rand].transform.parent.gameObject.GetComponent<Patrol>());
+                IsPatrol = false;
+            }
+            crew[rand].transform.parent.gameObject.AddComponent<MainInfected>();
         }
         else
             Debug.Log("Win");

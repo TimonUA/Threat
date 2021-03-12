@@ -22,7 +22,6 @@ public class Patrol : MonoBehaviour
     private string FirstMovementStr;
     private string LastMovementStr;
     private string texture;
-    private int st;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,6 @@ public class Patrol : MonoBehaviour
         LastMovementStr = texture.Replace("SE", LastMovementStr);
         current = 0;
         speed = 2;
-        st = 1;
         waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition };
         IsPatrol = true;
         mainCamera = Camera.main;
@@ -48,9 +46,7 @@ public class Patrol : MonoBehaviour
     void Update()
     {
         if (!PauseMenu.IsPaused)
-        {
-            if (gameObject.tag != "MainInfected")
-            {
+        {        
                 Patroling();
                 if (TimeInCheck > 0 && downTime > 0)
                 {
@@ -80,7 +76,7 @@ public class Patrol : MonoBehaviour
                         IsPatrol = false;
                         LoadTexture();
                         Destroy(this);
-                        game.GetComponent<Game>().IsPatrol = false;
+                        game.IsPatrol = false;
                         game.Patrol();
                     }
                     else
@@ -88,26 +84,6 @@ public class Patrol : MonoBehaviour
                         LoadTexture(LastMovementStr);
                     }
                 }
-            }
-            else
-            {
-                IsPatrol = false;
-                if (st == 1)
-                {
-                    if (transform.position == waypoints[0])
-                        current = 0;
-                    else if (transform.position == waypoints[1])
-                        current = 1;
-                    else
-                        current = 2;
-                    st = 0;
-                }
-                if (tilemap.GetTile(cellPosition) != tile && this != null)
-                {
-                    LoadTexture(FirstMovementStr);
-                }
-                GoToCenter();
-            }
         }
     }
     void Patroling()
@@ -124,26 +100,6 @@ public class Patrol : MonoBehaviour
             current = 0;
             if (transform.position != waypoints[2] && transform.position != waypoints[1])
                 transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
-        }
-    }
-    void GoToCenter()
-    {
-        waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition, new Vector3(0f,0.5f)};
-        if (transform.position != waypoints[3])
-        {
-            if (tilemap.GetTile(cellPosition) != tile)
-            {
-                if (transform.position != waypoints[current])
-                    transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
-                else
-                    current = (current + 1) % waypoints.Length;
-            }
-        }
-        else
-        {
-            LoadTexture();
-            Destroy(this);
-            game.Patrol();
         }
     }
     void LoadTexture()

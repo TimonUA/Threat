@@ -31,10 +31,11 @@ public class Infected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.6)
+        if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.4)
             gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
         else if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.2)
             ChanceToInfect *= 1.5f;
+        Debug.Log(ChanceToInfect);
     }
     void AgeImpact(int age)
     {
@@ -57,7 +58,7 @@ public class Infected : MonoBehaviour
     {
         if(!PauseMenu.IsPaused)
         {
-           gameObject.transform.parent.gameObject.GetComponent<Character>().health -= 0.5f;
+           gameObject.transform.parent.gameObject.GetComponent<Character>().health -= 1f;
         }
         
     }
@@ -88,7 +89,6 @@ public class Infected : MonoBehaviour
                         }
                     }
             }
-            //Debug.Log(UnderThreat.Count);
         }
     }
     private void OnTriggerEnter2D(Collider2D collider)

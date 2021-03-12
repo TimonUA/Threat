@@ -14,9 +14,8 @@ public class Character : MonoBehaviour
     private int maxStats = 10;
     private int rand;
     private int typeName;
-    //public float GameProgress;
     public float workTime;
-    private float workCount = 0.0002f;
+    private float workCount = 0.0007f;
     public float health;
     public float maxHealth = 100f;
     public bool IsInfected;
@@ -115,6 +114,17 @@ public class Character : MonoBehaviour
             {
                if(gameObject==Camera.main.GetComponent<Game>().lastInfoObject)
                     Camera.main.GetComponent<Game>().CharacterInfo.SetActive(false);
+               if(gameObject.TryGetComponent<Patrol>(out var patrol)!=false)
+                {
+                    Destroy(gameObject.GetComponent<Patrol>());
+                    Debug.Log("Patrol Destroyed");
+                    Camera.main.GetComponent<Game>().Patrol();
+                }
+                if (gameObject.TryGetComponent<MainInfected>(out var mainInfected) != false)
+                {
+                    Destroy(gameObject.GetComponent<MainInfected>());
+                    Debug.Log("MainInfected Destroyed");
+                }
                 Destroy(gameObject);
             }
             if (workTime > 0)
@@ -129,7 +139,7 @@ public class Character : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
                 }
                 if (role == "Medic")
-                    Camera.main.gameObject.GetComponent<Game>().GameProgress += Work()/2f;
+                    Camera.main.gameObject.GetComponent<Game>().GameProgress += Work()/1.5f;
             }
         }
     }
@@ -140,12 +150,12 @@ public class Character : MonoBehaviour
             if (role == "Medic")
                 return workCount;
             else
-                return workCount / 1.5f;
+                return workCount / 1.3f;
         }
         else 
         {
             if (role == "Medic")
-                return workCount / 1.5f;
+                return workCount / 1.3f;
             else
                 return workCount / 2f;
         }

@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Generator.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Infected.cs" />
+    <Compile Include="Assets\Scripts\MainInfected.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Med.cs" />
     <Compile Include="Assets\Scripts\MedBonus.cs" />
