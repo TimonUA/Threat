@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     private int typeName;
     //public float GameProgress;
     public float workTime;
-    private float workCount = 0.002f;
+    private float workCount = 0.0002f;
     public float health;
     public float maxHealth = 100f;
     public bool IsInfected;
@@ -113,13 +113,9 @@ public class Character : MonoBehaviour
         {
             if (health <= 0)
             {
-               
-                Camera.main.GetComponent<Game>().CharacterInfo.SetActive(false);
+               if(gameObject==Camera.main.GetComponent<Game>().lastInfoObject)
+                    Camera.main.GetComponent<Game>().CharacterInfo.SetActive(false);
                 Destroy(gameObject);
-                //if (tag == "MainInfected")
-                //{
-                //    Camera.main.GetComponent<Game>().RePosition();
-                //}
             }
             if (workTime > 0)
             {
@@ -132,6 +128,8 @@ public class Character : MonoBehaviour
                 {
                     gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
                 }
+                if (role == "Medic")
+                    Camera.main.gameObject.GetComponent<Game>().GameProgress += Work()/2f;
             }
         }
     }
@@ -147,9 +145,9 @@ public class Character : MonoBehaviour
         else 
         {
             if (role == "Medic")
-                return workCount/2f;
+                return workCount / 1.5f;
             else
-                return workCount / 3f;
+                return workCount / 2f;
         }
     }
 }

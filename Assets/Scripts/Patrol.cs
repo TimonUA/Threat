@@ -80,6 +80,7 @@ public class Patrol : MonoBehaviour
                         IsPatrol = false;
                         LoadTexture();
                         Destroy(this);
+                        game.GetComponent<Game>().IsPatrol = false;
                         game.Patrol();
                     }
                     else
@@ -101,7 +102,7 @@ public class Patrol : MonoBehaviour
                         current = 2;
                     st = 0;
                 }
-                if (tilemap.GetTile(cellPosition) != tile)
+                if (tilemap.GetTile(cellPosition) != tile && this != null)
                 {
                     LoadTexture(FirstMovementStr);
                 }
@@ -156,9 +157,9 @@ public class Patrol : MonoBehaviour
     }
     void LoadSpriteWhenReady(AsyncOperationHandle<Sprite> handleToCheck)
     {
-        if (handleToCheck.Status == AsyncOperationStatus.Succeeded)
+        if (handleToCheck.Status == AsyncOperationStatus.Succeeded && this)
         {
-            gameObject.GetComponent<SpriteRenderer>().sprite = handleToCheck.Result;
+                gameObject.GetComponent<SpriteRenderer>().sprite = handleToCheck.Result;
         }
     }
 }

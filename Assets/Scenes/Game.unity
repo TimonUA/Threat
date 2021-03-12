@@ -877,8 +877,7 @@ MonoBehaviour:
   CharacterInfo: {fileID: 1199490928}
   ProgressBar: {fileID: 1020578178}
   HealthBar: {fileID: 1181698909}
-  Collider: {fileID: 6577326309344247212, guid: b0703cddc1e2a1e409810fbf4814e553,
-    type: 3}
+  lastInfoObject: {fileID: 0}
   FirstMovementStr:
   - SW
   - NW
@@ -899,6 +898,7 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: f0d1cfd9d060eea4c8f28486442fd496, type: 2}
   GameProgress: 0
   biggerAge: 0
+  IsPatrol: 0
   dangerousAge: 0
 --- !u!1 &656355784
 GameObject:

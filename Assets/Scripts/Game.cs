@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
     public HealthBar HealthBar;
     //public GameObject Collider;
     private GameObject hitObject;
-    private GameObject lastObject;
+    public GameObject lastInfoObject;
     public string[] FirstMovementStr;
     public string[] LastMovementStr;
     public string dangerousGender;
@@ -27,6 +27,7 @@ public class Game : MonoBehaviour
     public TileBase tile;
     public float GameProgress;
     public bool biggerAge;
+    public bool IsPatrol;
     public int dangerousAge;
     private int st;
     private int rand;
@@ -37,7 +38,8 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        st = 2;
+        st = 3;
+        IsPatrol = false;
         dangerousAge = 30;
         biggerAge = (Random.value > 0.5f);
         GameProgress = 0f;  
@@ -47,16 +49,21 @@ public class Game : MonoBehaviour
     {
         if (!PauseMenu.IsPaused)
         {
-            if (st == 2)
+            if (st == 3)
             {
                 crew = GameObject.FindGameObjectsWithTag("Character");
                 SetCoordinates(crew);
                 CrewCheck(crew);
-                st = 1;
+                st = 2;
             }
-            if (st == 1)
+            else if(st == 2)
             {
                 Invoke("Patrol", 2f);
+                st = 0;
+            }
+            else if (st == 1)
+            {
+                Patrol();
                 st = 0;
             }
             if (Input.GetMouseButtonDown(0))
@@ -81,9 +88,9 @@ public class Game : MonoBehaviour
                     }
                     else
                     {
-                        if (lastObject != null)
+                        if (lastInfoObject != null)
                         {
-                            lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                            lastInfoObject.transform.GetChild(1).gameObject.SetActive(false);
                             CharacterInfo.SetActive(false);
                         }
                     }
@@ -91,10 +98,10 @@ public class Game : MonoBehaviour
                 else
                 {
                     
-                    if(lastObject != null)
+                    if(lastInfoObject != null)
                     {
                         CharacterInfo.SetActive(false);
-                        lastObject.transform.GetChild(1).gameObject.SetActive(false);
+                        lastInfoObject.transform.GetChild(1).gameObject.SetActive(false);
                     }
                         
                 }
@@ -103,15 +110,17 @@ public class Game : MonoBehaviour
             if (CharacterInfo.activeSelf)
             {
 
-                if (lastObject != null)
+                if (lastInfoObject != null)
                 {
-                    HealthBar.SetCurrentHealth(lastObject.GetComponent<Character>().health);
-                    if (lastObject.transform.GetChild(0).tag == "CharacterCollider")
+                    HealthBar.SetCurrentHealth(lastInfoObject.GetComponent<Character>().health);
+                    if (lastInfoObject.transform.GetChild(0).tag == "CharacterCollider")
                         characterStatus.text = "Healthy";
                     else
                         characterStatus.text = "Infect";
                 }
             }
+            if (MainInfectedObject == null)
+                st = 1;
             ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
             //if(!GameObject.FindGameObjectWithTag("MainInfected"))
             //{
@@ -121,25 +130,31 @@ public class Game : MonoBehaviour
     }
     public void Patrol()
     {
+        Debug.Log("Patrol");
         if (MainInfectedObject != null)
         {
-            crew = GameObject.FindGameObjectsWithTag("Character");
-            rand = Random.Range(0, crew.Length);
-            if (rand != lastPatrolCrew)
+            if (!IsPatrol)
             {
+                crew = GameObject.FindGameObjectsWithTag("Character");
+                rand = Random.Range(0, crew.Length);
+                //if (rand != lastPatrolCrew)
+                //{
                 lastPatrolCrew = rand;
                 crew[rand].AddComponent<Patrol>();
-            }
-            else
-            {
-                while (rand == lastPatrolCrew)
-                    rand = Random.Range(0, crew.Length);
-                crew[rand].AddComponent<Patrol>();
+                IsPatrol = true;
+                //}
+                //else
+                //{
+                //    while (rand == lastPatrolCrew)
+                //        rand = Random.Range(0, crew.Length);
+                //    crew[rand].AddComponent<Patrol>();
+                //    IsPatrol = true;
+                //}
             }
         }
         else
         {
-            RePosition();
+                RePosition();
         }
     }
     public void RePosition()
@@ -159,12 +174,12 @@ public class Game : MonoBehaviour
     }
     public void ShowInfo(GameObject gameObject)
     {
-        if (lastObject != null)
+        if (lastInfoObject != null)
         {
-            lastObject.transform.GetChild(1).gameObject.SetActive(false);
+            lastInfoObject.transform.GetChild(1).gameObject.SetActive(false);
         }
-        lastObject = gameObject;
-        lastObject.transform.GetChild(1).gameObject.SetActive(true);
+        lastInfoObject = gameObject;
+        lastInfoObject.transform.GetChild(1).gameObject.SetActive(true);
         CharacterInfo.SetActive(true);
         characterName.text = gameObject.name;
         characterAge.text = $"Age: {gameObject.GetComponent<Character>().age}";

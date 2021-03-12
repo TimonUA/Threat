@@ -20,7 +20,8 @@ public class Infected : MonoBehaviour
         IsCollision = false;
         gameObject.transform.parent.GetComponent<Character>().IsInfected = true;
         gameObject.tag = "InfectedCollider";
-        gameObject.AddComponent<Rigidbody2D>();
+        if (!gameObject.TryGetComponent<Rigidbody2D>(out var rigidbody2D))
+            gameObject.AddComponent<Rigidbody2D>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         gameObject.GetComponent<CircleCollider2D>().radius = 2.6f;
         InvokeRepeating("Disease", 0f, 1f);  
@@ -30,7 +31,10 @@ public class Infected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.6)
+            gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
+        else if (gameObject.transform.parent.GetComponent<Character>().health < gameObject.transform.parent.GetComponent<Character>().maxHealth * 0.2)
+            ChanceToInfect *= 1.5f;
     }
     void AgeImpact(int age)
     {
@@ -53,38 +57,37 @@ public class Infected : MonoBehaviour
     {
         if(!PauseMenu.IsPaused)
         {
-           gameObject.transform.parent.gameObject.GetComponent<Character>().health -= 1f;
+           gameObject.transform.parent.gameObject.GetComponent<Character>().health -= 0.5f;
         }
         
     }
     void Disease()
     {
-        if (IsCollision)
+        if (IsCollision && !PauseMenu.IsPaused)
         {
-            for (int i=0;i<UnderThreat.Count;i++)
-            {
-                UnderThreat[i].GetComponent<Character>().workTime = 1f;
-                randN = Random.value;
-                AgeImpact(UnderThreat[i].GetComponent<Character>().age);
-                GenderImpact(UnderThreat[i].GetComponent<Character>().gender);
-                Debug.Log(ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f);
-                if (randN <= ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f)
-                { 
-                    //rand = Random.Range(0, UnderThreat.Count);
-                    UnderThreat[i].GetComponent<Character>().IsInfected = true;
-                    UnderThreat[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
-                    if (UnderThreat.Count > 1)
+                for (int i = 0; i < UnderThreat.Count; i++)
+                {
+                    UnderThreat[i].GetComponent<Character>().workTime = 1f;
+                    randN = Random.value;
+                    AgeImpact(UnderThreat[i].GetComponent<Character>().age);
+                    GenderImpact(UnderThreat[i].GetComponent<Character>().gender);
+                    //Debug.Log(ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f);
+                    if (randN <= ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f)
                     {
-                        UnderThreat.Remove(UnderThreat[i]);
+                        //rand = Random.Range(0, UnderThreat.Count);
+                        UnderThreat[i].GetComponent<Character>().IsInfected = true;
+                        UnderThreat[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
+                        if (UnderThreat.Count > 1)
+                        {
+                            UnderThreat.Remove(UnderThreat[i]);
+                        }
+                        else
+                        {
+                            IsCollision = false;
+                            UnderThreat.Remove(UnderThreat[i]);
+                        }
                     }
-                    else
-                    {
-                        IsCollision = false;
-                        UnderThreat.Remove(UnderThreat[i]);
-                    }
-                }
-
-            }         
+            }
             //Debug.Log(UnderThreat.Count);
         }
     }
