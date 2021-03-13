@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     }
     public void EasyDifficulty()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("EasyGame");
     }
     public void MediumDifficulty()
     {

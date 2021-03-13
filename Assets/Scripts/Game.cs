@@ -31,6 +31,10 @@ public class Game : MonoBehaviour
     public Dialogue InfectedDialogue;
     public Dialogue GameDialogue;
     public float GameProgress;
+    public float medBonus;
+    public float medicDiv;
+    public float nomedicDiv;
+    public float infectedDiv;
     public bool biggerAge;
     public bool IsPatrol;
     public int dangerousAge;
@@ -89,7 +93,7 @@ public class Game : MonoBehaviour
                     hitObject = hit.collider.gameObject;
                     if (hitObject.tag == "Med")
                     {
-                        GameProgress += 0.2f;
+                        GameProgress += medBonus*1f;
                         Destroy(hitObject);
                     }
                     else if (hitObject.tag == "Character")
@@ -158,7 +162,10 @@ public class Game : MonoBehaviour
             {
                 if(dt==3)
                 {
-                    GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine","Also crew can develop vaccine even if they infected, but much slower","So choose who go to infect reasonably","The team itself directs 1 crew member to the infect","But, you can choose who go to infect, just touch to gate,and gate cloose","This means crew member can't go to infect","Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine"};
+                    if(medBonus==0.015)
+                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                    else
+                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine","Also crew can develop vaccine even if they infected, but much slower","So choose who go to infect reasonably","The team itself directs 1 crew member to the infect","But, you can choose who go to infect, just touch to gate,and gate cloose","This means crew member can't go to infect","Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine"};
                     gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                     gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                     dt = 2;
