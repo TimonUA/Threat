@@ -10,7 +10,7 @@ public class Game : MonoBehaviour
     public static bool IsEnd;
     private GameObject[] crew;
     public GameObject CharacterInfo;
-    private GameObject MainInfectedObject;
+    public GameObject MainInfectedObject;
     public GameObject ProgressBar;
     public GameObject WinMenu;
     public GameObject LoseMenu;

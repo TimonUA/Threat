@@ -76,8 +76,11 @@ public class Patrol : MonoBehaviour
                         IsPatrol = false;
                         LoadTexture();
                         Destroy(this);
+                    if (game.MainInfectedObject != null)
+                    {
                         game.IsPatrol = false;
                         game.Patrol();
+                    }
                     }
                     else
                     {

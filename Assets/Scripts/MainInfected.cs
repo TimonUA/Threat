@@ -59,6 +59,7 @@ public class MainInfected : MonoBehaviour
                     {
                         IsPatrol = false;
                         LoadTexture();
+                        game.Patrol();
                         Destroy(this);
                     }
                     if(current==3)
@@ -81,8 +82,12 @@ public class MainInfected : MonoBehaviour
                 }
                 else
                 {
-                        game.RePosition();
-                }
+                    LoadTexture();
+                    gameObject.tag = "Character";
+                    Destroy(this);
+                    game.RePosition();
+                        
+            }
             }        
     }
     void Patroling()
