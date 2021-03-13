@@ -179,12 +179,12 @@ public class Game : MonoBehaviour
         }
         else
         {
-            if (dt == 2)
+            if (dt == 1)
             {
                 GameDialogue.sentences = new string[] { "After infected death, other infected go to hospital, if all infected die, and survive at least 1 crew member you win","Or if you do vaccine, and survive anyone you win"};
                 gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                dt = 1;
+                dt = 0;
             }
             RePosition();
             Patrol();
@@ -209,14 +209,18 @@ public class Game : MonoBehaviour
         else
             Debug.Log("Win");
     }
+    public int DialogueCheck()
+    {
+        return dt;
+    }
     public void AirVentDialogue()
     {
-        if(dt==1)
+        if(dt==2)
         {
             GameDialogue.sentences = new string[] { "It looks like infect is spreading now through air vent","It's means all crew under threat, but all crew develop a vaccine" };
             gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
             gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-            dt = 0;
+            dt = 1;
         }
     }
     public void ShowInfo(GameObject gameObject)
