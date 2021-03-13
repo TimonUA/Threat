@@ -206,8 +206,6 @@ public class Game : MonoBehaviour
             }
             crew[rand].transform.parent.gameObject.AddComponent<MainInfected>();
         }
-        else
-            Debug.Log("Win");
     }
     public int DialogueCheck()
     {
