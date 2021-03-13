@@ -31,6 +31,8 @@ public class Character : MonoBehaviour
     public Sprite engineerFemaleSprite;
     public Sprite medicFemaleSprite;
     public Sprite explorerFemaleSprite;
+    public Sprite infectedFemaleSprite;
+    public Sprite infectedMaleSprite;
     //public Character()
     void Start()
     {

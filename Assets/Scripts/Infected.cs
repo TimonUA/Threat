@@ -9,14 +9,14 @@ public class Infected : MonoBehaviour
     private float randN;
     private float ageChance;
     private float genderChance;
-    //private int st;
+    private int st;
     private Camera mainCamera;
     private List<GameObject> UnderThreat=new List<GameObject>();
     private GameObject parantObject;
     // Start is called before the first frame update
     void Start()
     {
-        //st = 1;
+        st = 2;
         mainCamera = Camera.main;
         IsCollision = false;
         parantObject = gameObject.transform.parent.gameObject;
@@ -34,11 +34,27 @@ public class Infected : MonoBehaviour
     void Update()
     {
         if (!PauseMenu.IsPaused && !Game.IsEnd)
-        {
+        {//помінять в сложності
             if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.4 && parantObject.tag == "MainInfected")
-                gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
-            else if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.2 && parantObject.tag == "MainInfected")
-                ChanceToInfect *= 1.5f;
+            {
+                if (st == 2)
+                {
+                    gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
+                    st = 1;
+                }
+            }
+            if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.2)
+            {
+                if (st == 1 || st == 2)
+                {
+                    ChanceToInfect *= 1.5f;
+                    if (parantObject.GetComponent<Character>().gender == "Female")
+                        parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedFemaleSprite;
+                    else
+                        parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedFemaleSprite;
+                    st = 0;
+                }
+            }
             //Debug.Log(ChanceToInfect);
         }
     }

@@ -12,7 +12,12 @@ public class Border : MonoBehaviour
     void Start()
     {
         texture = gameObject.transform.parent.GetComponent<Character>().mainSprite.name;
-        texture = texture.Replace("astronautA_", borderStr);
+        if(texture.Contains("astronautA"))
+            texture = texture.Replace("astronautA_", borderStr);
+        else if(texture.Contains("astronautB"))
+            texture = texture.Replace("astronautB_", borderStr);
+        else
+            texture = texture.Replace("alien_", borderStr);
         LoadTexture(texture);
     }
 
@@ -20,7 +25,12 @@ public class Border : MonoBehaviour
     void Update()
     {
         texture = gameObject.transform.parent.GetComponent<Character>().mainSprite.name;
-        texture = texture.Replace("astronautA_", borderStr);
+        if (texture.Contains("astronautA"))
+            texture = texture.Replace("astronautA_", borderStr);
+        else if (texture.Contains("astronautB"))
+            texture = texture.Replace("astronautB_", borderStr);
+        else
+            texture = texture.Replace("alien_", borderStr);
         LoadTexture(texture);
     }
     void LoadTexture(string Texture)

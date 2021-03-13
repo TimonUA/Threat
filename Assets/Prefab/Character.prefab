@@ -255,21 +255,26 @@ MonoBehaviour:
   age: 0
   intelligence: 0
   strength: 0
+  workTime: 0
   health: 100
   maxHealth: 100
   IsInfected: 0
+  IsWork: 0
   startPosition: {x: 0, y: 0, z: 0}
   gatePosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   mainSprite: {fileID: 0}
-  engineerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
-  medicMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
-  explorerMaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
+  engineerMaleSprite: {fileID: 21300000, guid: 12745d0f1f786584b9606aa096e39816, type: 3}
+  medicMaleSprite: {fileID: 21300000, guid: 12745d0f1f786584b9606aa096e39816, type: 3}
+  explorerMaleSprite: {fileID: 21300000, guid: 12745d0f1f786584b9606aa096e39816, type: 3}
   engineerFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b,
     type: 3}
   medicFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b, type: 3}
   explorerFemaleSprite: {fileID: 21300000, guid: 5fa0d53e9147cdf4c92756a9bb41bd8b,
     type: 3}
+  infectedFemaleSprite: {fileID: 21300000, guid: f28db13c727e87948b88ddc1c34bab25,
+    type: 3}
+  infectedMaleSprite: {fileID: 21300000, guid: f28db13c727e87948b88ddc1c34bab25, type: 3}
 --- !u!61 &2792389553668353476
 BoxCollider2D:
   m_ObjectHideFlags: 0

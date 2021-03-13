@@ -17,6 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 32e2a4bc13db00f429a4ba39ffa5f89d
   m_SerializeEntries:
+  - m_GUID: 053417536f7a91542b97aee4ce589820
+    m_Address: Assets/Sprites/Space/Characters/astronautB_NW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 12745d0f1f786584b9606aa096e39816
+    m_Address: Assets/Sprites/Space/Characters/astronautB_SE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 12792745774ebe149860f1e80116fb2e
     m_Address: Assets/Sprites/Space/Characters/Border_SW.png
     m_ReadOnly: 0
@@ -59,8 +71,44 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 78dca413172238141a5d9ae7093db1a9
+    m_Address: Assets/Sprites/Space/Characters/astronautB_SW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7da1182f82f908e45a9f5779482cdc69
+    m_Address: Assets/Sprites/Space/Characters/alien_NW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: b53eff0793fb49546afd60ad5af78549
     m_Address: Assets/Sprites/Space/Characters/Border_SE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: dd510fb9e41eacc4580244de0f3baa08
+    m_Address: Assets/Sprites/Space/Characters/alien_SW.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e7b8ccb6a5d2a81498fd023e63c0fe90
+    m_Address: Assets/Sprites/Space/Characters/astronautB_NE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f28db13c727e87948b88ddc1c34bab25
+    m_Address: Assets/Sprites/Space/Characters/alien_SE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: fa1c04f9377778348a1fdd4b0806b2d1
+    m_Address: Assets/Sprites/Space/Characters/alien_NE.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
