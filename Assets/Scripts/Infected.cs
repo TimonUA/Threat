@@ -33,13 +33,14 @@ public class Infected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        if (!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
         {//помінять в сложності
             if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.4 && parantObject.tag == "MainInfected")
             {
                 if (st == 2)
                 {
                     gameObject.GetComponent<CircleCollider2D>().radius = 6.6f;
+                    mainCamera.GetComponent<Game>().AirVentDialogue();
                     st = 1;
                 }
             }
@@ -77,7 +78,7 @@ public class Infected : MonoBehaviour
     }
     void Threat()
     {
-        if(!PauseMenu.IsPaused && !Game.IsEnd)
+        if(!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
         {
             parantObject.gameObject.GetComponent<Character>().health -= 1f;
         }
@@ -85,7 +86,7 @@ public class Infected : MonoBehaviour
     }
     void Disease()
     {
-        if (IsCollision && !PauseMenu.IsPaused && !Game.IsEnd)
+        if (IsCollision && !PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
         {
                 for (int i = 0; i < UnderThreat.Count; i++)
                 {

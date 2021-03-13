@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        if (!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
         {
             if (health <= 0)
             {

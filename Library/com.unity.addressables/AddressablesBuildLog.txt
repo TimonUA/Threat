@@ -1,2 +1,2 @@
 Warning: The formatting in this file is subject to change.
-[Building Use Asset Database (faster)] 142720,3us
+[Building Use Asset Database (faster)] 58047,5us

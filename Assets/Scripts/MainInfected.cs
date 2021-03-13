@@ -49,7 +49,7 @@ public class MainInfected : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        if (!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
         {
             
                 Patroling();
@@ -101,32 +101,7 @@ public class MainInfected : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
         }
     }
-    //void GoToCenter()
-    //{
-    //    waypoints = new Vector3[] { gameObject.GetComponent<Character>().startPosition, gameObject.GetComponent<Character>().gatePosition, gameObject.GetComponent<Character>().endPosition, new Vector3(0f, 0.5f) };
-    //    if (transform.position != waypoints[3])
-    //    {
-    //        Debug.Log("!");
-    //        if (tilemap.GetTile(cellPosition) != tile || current > 1)
-    //        {
-    //            if (transform.position != waypoints[current])
-    //                transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
-    //            else
-    //                current = (current + 1) % waypoints.Length;
-    //        }
-    //        else if (IsPatrol && current != 2)
-    //        {
-    //            current = 0;
-    //            if (transform.position != waypoints[2] && transform.position != waypoints[1])
-    //                transform.position = Vector3.MoveTowards(transform.position, waypoints[current], speed * Time.deltaTime);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        LoadTexture();
-    //        Destroy(this);
-    //    }
-    //}
+    
     void LoadTexture()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<Character>().mainSprite;

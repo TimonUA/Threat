@@ -28,11 +28,14 @@ public class Game : MonoBehaviour
     public Text characterStatus;
     public Tilemap tilemap;
     public TileBase tile;
+    public Dialogue InfectedDialogue;
+    public Dialogue GameDialogue;
     public float GameProgress;
     public bool biggerAge;
     public bool IsPatrol;
     public int dangerousAge;
     private int st;
+    private int dt;
     private int rand;
     public int crewNumb;
     //private int lastPatrolCrew;
@@ -42,9 +45,12 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dt = 3;
         st = 3;
         IsEnd = false;
         IsPatrol = false;
+        GameDialogue = new Dialogue();
+        GameDialogue.name = "Base AI";
         //Помінять в сложності
         dangerousAge = 30;
         biggerAge = (Random.value > 0.5f);
@@ -53,7 +59,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.IsPaused && !IsEnd)
+        if (!PauseMenu.IsPaused && !IsEnd && !DialogueManager.IsDialogue)
         {          
             
             if (st == 3)
@@ -150,6 +156,13 @@ public class Game : MonoBehaviour
         {
             if (!IsPatrol)
             {
+                if(dt==3)
+                {
+                    GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine","Also crew can develop vaccine even if they infected, but much slower","So choose who go to infect reasonably","The team itself directs 1 crew member to the infect","But, you can choose who go to infect, just touch to gate,and gate cloose","This means crew member can't go to infect","Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine"};
+                    gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                    dt = 2;
+                }
                 crew = GameObject.FindGameObjectsWithTag("Character");
                 rand = Random.Range(0, crew.Length);
                 //lastPatrolCrew = rand;
@@ -159,6 +172,13 @@ public class Game : MonoBehaviour
         }
         else
         {
+            if (dt == 2)
+            {
+                GameDialogue.sentences = new string[] { "After infected death, other infected go to hospital, if all infected die, and survive at least 1 crew member you win","Or if you do vaccine, and survive anyone you win"};
+                gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                dt = 1;
+            }
             RePosition();
             Patrol();
         }
@@ -181,6 +201,16 @@ public class Game : MonoBehaviour
         }
         else
             Debug.Log("Win");
+    }
+    public void AirVentDialogue()
+    {
+        if(dt==1)
+        {
+            GameDialogue.sentences = new string[] { "It looks like infect is spreading now through air vent","It's means all crew under threat, but all crew develop a vaccine" };
+            gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
+            gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+            dt = 0;
+        }
     }
     public void ShowInfo(GameObject gameObject)
     {
@@ -226,6 +256,11 @@ public class Game : MonoBehaviour
                 crew[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
                 crew[i].tag = "MainInfected";
                 crew[i].GetComponent<SpriteRenderer>().sprite=crew[i].GetComponent<Character>().mainSprite;
+                crew[i].AddComponent<DialogueTrigger>();
+                InfectedDialogue.name = crew[i].name;
+                InfectedDialogue.sentences = new string[] { "Oops, it seems I feel bad, I'm going to the hospital" };
+                crew[i].GetComponent<DialogueTrigger>().dialogue = InfectedDialogue;
+                crew[i].GetComponent<DialogueTrigger>().TriggerDialogue();
             }
 
         }
