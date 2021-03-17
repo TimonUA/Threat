@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -96,11 +97,7 @@ public class Game : MonoBehaviour
                         GameProgress += medBonus*1f;
                         Destroy(hitObject);
                     }
-                    else if (hitObject.tag == "Character")
-                    {
-                        ShowInfo(hitObject);
-                    }
-                    else if (hitObject.tag == "Infected" || hitObject.tag == "MainInfected")
+                    else if (hitObject.tag == "Character" || hitObject.tag == "Infected" || hitObject.tag == "MainInfected")
                     {
                         ShowInfo(hitObject);
                     }
@@ -139,13 +136,16 @@ public class Game : MonoBehaviour
             if (MainInfectedObject == null)
                 st = 1;
             ProgressBar.GetComponent<FillBar>().CurrentValue = GameProgress;
-            if (GameProgress >= 100 )
+            if (st < 2)
             {
-                End(WinMenu);
-            }
-            if (crewNumb == 0)
-            {
-                End(LoseMenu);
+                if (GameProgress >= 100 || (GameObject.FindGameObjectsWithTag("InfectedCollider").Length == 0 && crewNumb > 0))
+                {
+                    End(WinMenu);
+                }
+                if (crewNumb == 0)
+                {
+                    End(LoseMenu);
+                }
             }
         }
     }
@@ -158,8 +158,9 @@ public class Game : MonoBehaviour
     {
         if (MainInfectedObject != null)
         {
-            if (!IsPatrol)
+            if (!IsPatrol && GameObject.FindGameObjectsWithTag("Character").Length > 0)
             {
+                //Debug.Log("Crew length:"+GameObject.FindGameObjectsWithTag("Character").Length);
                 if(dt==3)
                 {
                     if(medBonus==0.015)
@@ -276,16 +277,50 @@ public class Game : MonoBehaviour
     }
     void CrewCheck(GameObject[] crew)
     {
-        bool IsMedic = false;
+        int medicCount = 0;
+        int lastRand;
         for(int i=0;i<crew.Length;i++)
         {
             if (crew[i].GetComponent<Character>().role == "Medic")
-                IsMedic = true;
+                medicCount++;
         }
-        if(!IsMedic)
-        {
+        if(medicCount < 2)
+        { 
             rand = Random.Range(0, crew.Length);
             crew[rand].GetComponent<Character>().role = "Medic";
+            medicCount++;
+            if (medicCount < 2)
+            {
+                lastRand = rand;
+                while (lastRand == rand)
+                {
+                    rand = Random.Range(0, crew.Length);
+                }
+                crew[rand].GetComponent<Character>().role = "Medic";
+            }
+        }
+        if(medicCount>2)
+        {
+           for(int i=0;i<crew.Length;i++)
+           {
+                if (crew[i].GetComponent<Character>().role == "Medic")
+                {
+                    rand = Random.Range(0, 2);
+                    if (rand == 0)
+                    {
+                        crew[i].GetComponent<Character>().role = "Engineer";
+                    }
+                    else
+                    {
+                        crew[i].GetComponent<Character>().role = "Explorer";
+                    }
+                    medicCount--;
+                    if(medicCount==2)
+                    {
+                        break;
+                    }
+                }
+           }
         }
 
     }

@@ -48,7 +48,7 @@ public class Infected : MonoBehaviour
             {
                 if (st == 1 || st == 2)
                 {
-                    ChanceToInfect *= 1.5f;
+                    ChanceToInfect *= 1.2f;
                     if (parantObject.GetComponent<Character>().gender == "Female")
                         parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedFemaleSprite;
                     else
@@ -64,9 +64,9 @@ public class Infected : MonoBehaviour
         int dangerousAge = mainCamera.GetComponent<Game>().dangerousAge;
         bool biggerAge = mainCamera.GetComponent<Game>().biggerAge;
         if (biggerAge == true && age > dangerousAge)
-            ageChance = 3f;
+            ageChance = 2f;
         else if (biggerAge == false && age < dangerousAge)
-            ageChance = 3f;
+            ageChance = 2f;
         else
             ageChance = 0f;
     }
@@ -119,6 +119,17 @@ public class Infected : MonoBehaviour
         {
             IsCollision = true;
             UnderThreat.Add(collider.gameObject.transform.parent.gameObject);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.tag == "CharacterCollider" || collider.tag == "InfectedCollider")
+        {
+            IsCollision = true;
+            if (!UnderThreat.Contains(collider.gameObject.transform.parent.gameObject))
+            {
+                UnderThreat.Add(collider.gameObject.transform.parent.gameObject);
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collider)

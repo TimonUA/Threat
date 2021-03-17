@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     private int rand;
     private int typeName;
     public float workTime;
-    private float workCount = 0.0007f;
+    private float workCount = 0.007f;
     private float medicDiv;
     private float nomedicDiv;
     private float infectedDiv;
@@ -114,9 +114,9 @@ public class Character : MonoBehaviour
         mainSprite = sprite.sprite;
     }
     //Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (!PauseMenu.IsPaused && !Game.IsEnd)
+        if (!PauseMenu.IsPaused && !DialogueManager.IsDialogue && !Game.IsEnd)
         {
             if(st==1)
             {
@@ -130,31 +130,42 @@ public class Character : MonoBehaviour
             {
                 if (gameObject == Camera.main.GetComponent<Game>().lastInfoObject)
                     game.CharacterInfo.SetActive(false);
-                if (gameObject.TryGetComponent<Patrol>(out var patrol) != false)
+               
+                game.crewNumb--;
+                //GameObject[] infected = GameObject.FindGameObjectsWithTag("InfectedCollider");
+                //GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
+                //if (infected.Equals(gameObject) && infected.Length == 1 && crew.Length > 1)
+                //{
+                //    game.End(game.WinMenu);
+                //    //gameObject.SetActive(false);
+                //    Destroy(gameObject);
+                //    Destroy(this);
+                //}
+                //else if (infected.Length == 1 && crew.Length == 1)
+                //{
+                //    game.End(game.LoseMenu);
+                //    //gameObject.SetActive(false);
+                //    Destroy(gameObject);
+                //}
+                //else
+                //{
+                    //Destroy(gameObject);
+                    //Destroy(this);
+                //}
+
+                if (gameObject.TryGetComponent<Patrol>(out var patrol) != false && this)
                 {
                     Destroy(gameObject.GetComponent<Patrol>());
                     game.IsPatrol = false;
                     game.Patrol();
                 }
-                if (gameObject.TryGetComponent<MainInfected>(out var mainInfected) != false)
+                if (gameObject.TryGetComponent<MainInfected>(out var mainInfected) != false && this)
                 {
+                    game.MainInfectedObject = null;
                     Destroy(gameObject.GetComponent<MainInfected>());
                 }
-                game.crewNumb--;
-                GameObject[] infected = GameObject.FindGameObjectsWithTag("InfectedCollider");
-                GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
-                if (infected.Length == 1 && crew.Length>1)
-                {
-                    game.End(game.WinMenu);
-                    gameObject.SetActive(false);
-                }
-                else if(infected.Length == 1 && crew.Length == 1)
-                {
-                    game.End(game.LoseMenu);
-                    gameObject.SetActive(false);
-                }
-                else
-                    Destroy(gameObject);
+                Destroy(gameObject);
+                Destroy(this);
             }
             if (workTime > 0)
             {
@@ -168,12 +179,15 @@ public class Character : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
                 }
                 //помінять в сложності
-                if(game.medBonus==0.025)
-                    game.GameProgress += Work() / infectedDiv;
-                if(game.medBonus==0.02)
+                if (game.medBonus == 0.25)
+                {
+                    game.GameProgress += Work() / (infectedDiv);
+                    //Debug.Log("Worrkkkk");
+                }
+                if(game.medBonus == 0.2)
                 {
                     if (role == "Medic")
-                        game.GameProgress += Work() / infectedDiv;
+                        game.GameProgress += Work() / (infectedDiv);
                 }
             }
         }
@@ -192,7 +206,7 @@ public class Character : MonoBehaviour
             if (role == "Medic")
                 return workCount / (medicDiv*1.2f);
             else
-                return workCount / (nomedicDiv*1.3f);
+                return workCount / (nomedicDiv*1.7f);
         }
     }
 }

@@ -8,7 +8,7 @@ public class LoseMenu : MonoBehaviour
     public void TryAgein()
     {
         Game.IsEnd = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void QuitToMenu()
     {

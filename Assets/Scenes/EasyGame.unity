@@ -301,8 +301,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768026847}
-        m_MethodName: QuitToMenu
+      - m_Target: {fileID: 1768026849}
+        m_MethodName: TryAgein
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterInfo: {fileID: 1199490928}
+  MainInfectedObject: {fileID: 0}
   ProgressBar: {fileID: 1020578178}
   WinMenu: {fileID: 162989577}
   LoseMenu: {fileID: 1412473851}
@@ -1481,8 +1482,8 @@ MonoBehaviour:
   GameProgress: 0
   medBonus: 0.25
   medicDiv: 1
-  nomedicDiv: 1.1
-  infectedDiv: 1.2
+  nomedicDiv: 1.5
+  infectedDiv: 7
   biggerAge: 0
   IsPatrol: 0
   dangerousAge: 0
@@ -2966,7 +2967,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768026847}
+      - m_Target: {fileID: 1768026849}
         m_MethodName: QuitToMenu
         m_Mode: 1
         m_Arguments:
@@ -3274,7 +3275,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768026847}
+      - m_Target: {fileID: 1768026849}
         m_MethodName: QuitToDesktop
         m_Mode: 1
         m_Arguments:
@@ -8699,7 +8700,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768026847}
+      - m_Target: {fileID: 1768026848}
         m_MethodName: QuitToDesktop
         m_Mode: 1
         m_Arguments:
@@ -8849,7 +8850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768026847}
+      - m_Target: {fileID: 1768026848}
         m_MethodName: QuitToMenu
         m_Mode: 1
         m_Arguments:

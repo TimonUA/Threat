@@ -40,7 +40,7 @@ public class Border : MonoBehaviour
     }
     void LoadSpriteWhenReady(AsyncOperationHandle<Sprite> handleToCheck)
     {
-        if (handleToCheck.Status == AsyncOperationStatus.Succeeded)
+        if (handleToCheck.Status == AsyncOperationStatus.Succeeded && this)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = handleToCheck.Result;
         }

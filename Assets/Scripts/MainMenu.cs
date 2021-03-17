@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject StartMenuObject;
     public GameObject MainMenuObject;
+    public void Start()
+    {
+        Game.IsEnd = false;
+    }
     public void Play()
     {
         MainMenuObject.SetActive(false);
