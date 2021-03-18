@@ -21,7 +21,10 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)&&IsDialogue)
+        {
+            DisplayNextSentences();
+        }
     }
     public void StartDialogue(Dialogue dialogue)
     {
