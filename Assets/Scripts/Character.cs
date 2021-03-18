@@ -179,12 +179,12 @@ public class Character : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.AddComponent<Infected>();
                 }
                 //помінять в сложності
-                if (game.medBonus == 0.25)
+                if (game.medBonus > 0.15)
                 {
                     game.GameProgress += Work() / (infectedDiv);
                     //Debug.Log("Worrkkkk");
                 }
-                if(game.medBonus == 0.2)
+               else
                 {
                     if (role == "Medic")
                         game.GameProgress += Work() / (infectedDiv);
