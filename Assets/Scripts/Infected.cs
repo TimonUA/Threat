@@ -52,11 +52,10 @@ public class Infected : MonoBehaviour
                     if (parantObject.GetComponent<Character>().gender == "Female")
                         parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedFemaleSprite;
                     else
-                        parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedFemaleSprite;
+                        parantObject.GetComponent<SpriteRenderer>().sprite = parantObject.GetComponent<Character>().infectedMaleSprite;
                     st = 0;
                 }
             }
-            //Debug.Log(ChanceToInfect);
         }
     }
     void AgeImpact(int age)

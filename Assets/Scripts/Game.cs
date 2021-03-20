@@ -141,10 +141,12 @@ public class Game : MonoBehaviour
                 if (GameProgress >= 100 || (GameObject.FindGameObjectsWithTag("InfectedCollider").Length == 0 && crewNumb > 0))
                 {
                     End(WinMenu);
+                    Destroy(this);
                 }
                 if (crewNumb == 0)
                 {
                     End(LoseMenu);
+                    Destroy(this);
                 }
             }
         }
@@ -156,39 +158,42 @@ public class Game : MonoBehaviour
     }
     public void Patrol()
     {
-        if (MainInfectedObject != null)
+        if (!IsEnd && this)
         {
-            if (!IsPatrol && GameObject.FindGameObjectsWithTag("Character").Length > 0)
+            if (MainInfectedObject != null)
             {
-                //Debug.Log("Crew length:"+GameObject.FindGameObjectsWithTag("Character").Length);
-                if(dt==3)
+                if (!IsPatrol && GameObject.FindGameObjectsWithTag("Character").Length > 0)
                 {
-                    if(medBonus==0.015)
-                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
-                    else
-                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine","Also crew can develop vaccine even if they infected, but much slower","So choose who go to infect reasonably","The team itself directs 1 crew member to the infect","But, you can choose who go to infect, just touch to gate,and gate cloose","This means crew member can't go to infect","Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine"};
+                    //Debug.Log("Crew length:"+GameObject.FindGameObjectsWithTag("Character").Length);
+                    if (dt == 3)
+                    {
+                        if (medBonus == 0.15)
+                            GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                        else
+                            GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                        gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
+                        gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                        dt = 2;
+                    }
+                    crew = GameObject.FindGameObjectsWithTag("Character");
+                    rand = Random.Range(0, crew.Length);
+                    //lastPatrolCrew = rand;
+                    crew[rand].AddComponent<Patrol>();
+                    IsPatrol = true;
+                }
+            }
+            else
+            {
+                if (dt == 1)
+                {
+                    GameDialogue.sentences = new string[] { "After infected death, other infected go to hospital, if all infected die, and survive at least 1 crew member you win", "Or if you do vaccine, and survive anyone you win" };
                     gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                     gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                    dt = 2;
+                    dt = 0;
                 }
-                crew = GameObject.FindGameObjectsWithTag("Character");
-                rand = Random.Range(0, crew.Length);
-                //lastPatrolCrew = rand;
-                crew[rand].AddComponent<Patrol>();
-                IsPatrol = true;
+                RePosition();
+                Patrol();
             }
-        }
-        else
-        {
-            if (dt == 1)
-            {
-                GameDialogue.sentences = new string[] { "After infected death, other infected go to hospital, if all infected die, and survive at least 1 crew member you win","Or if you do vaccine, and survive anyone you win"};
-                gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
-                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                dt = 0;
-            }
-            RePosition();
-            Patrol();
         }
     }
     public void RePosition()

@@ -11,8 +11,8 @@ public class Border : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        texture = gameObject.transform.parent.GetComponent<Character>().mainSprite.name;
-        if(texture.Contains("astronautA"))
+        texture = gameObject.transform.parent.GetComponent<SpriteRenderer>().sprite.name;
+        if (texture.Contains("astronautA"))
             texture = texture.Replace("astronautA_", borderStr);
         else if(texture.Contains("astronautB"))
             texture = texture.Replace("astronautB_", borderStr);
@@ -22,9 +22,9 @@ public class Border : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        texture = gameObject.transform.parent.GetComponent<Character>().mainSprite.name;
+        texture = gameObject.transform.parent.GetComponent<SpriteRenderer>().sprite.name;
         if (texture.Contains("astronautA"))
             texture = texture.Replace("astronautA_", borderStr);
         else if (texture.Contains("astronautB"))

@@ -13,21 +13,20 @@ public class MedBonus : MonoBehaviour
     void Start()
     {
         spawnBonus = true;
-
         Invoke("SpawnBonus", 10f);
     }
     void SpawnBonus()
     {
-        if (spawnBonus && !PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue && Camera.main.GetComponent<Game>().DialogueCheck() <= 2)
+        if (spawnBonus && !PauseMenu.IsPaused && Camera.main.TryGetComponent<Game>(out var game) && !DialogueManager.IsDialogue && Camera.main.GetComponent<Game>().DialogueCheck() <= 2)
         {
             GameObject med = Instantiate<GameObject>(medPrefab);
             med.transform.position = new Vector2(Random.Range(-1.5f, 1.5f), Random.Range(-0.5f, 0.5f)); 
             Invoke("SpawnBonus", secondsBetweenBonus);  
         }
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
+        if (!PauseMenu.IsPaused && Camera.main.TryGetComponent<Game>(out var game) && !DialogueManager.IsDialogue)
         {
             if (!spawnBonus)
             {
