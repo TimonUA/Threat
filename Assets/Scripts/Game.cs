@@ -164,7 +164,7 @@ public class Game : MonoBehaviour
                 {
                     if (dt == 3)
                     {
-                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect" , "but this is only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect", "but this is only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
                         gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                         gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                         dt = 2;
@@ -214,7 +214,7 @@ public class Game : MonoBehaviour
     {
         if(dt==2)
         {
-            GameDialogue.sentences = new string[] { "It looks like infect is spreading now through air vent","It's means all crew under threat, but all crew develop a vaccine" };
+            GameDialogue.sentences = new string[] { "It looks like infect is spreading now through air vent", "It's means all crew under threat", "but all crew develop a vaccine" };
             gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
             gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
             dt = 1;
