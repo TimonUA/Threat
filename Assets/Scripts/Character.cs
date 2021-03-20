@@ -38,7 +38,6 @@ public class Character : MonoBehaviour
     public Sprite infectedFemaleSprite;
     public Sprite infectedMaleSprite;
     private int st;
-    //public Character()
     void Start()
     {
         st = 1;
@@ -132,26 +131,6 @@ public class Character : MonoBehaviour
                     game.CharacterInfo.SetActive(false);
                
                 game.crewNumb--;
-                //GameObject[] infected = GameObject.FindGameObjectsWithTag("InfectedCollider");
-                //GameObject[] crew = GameObject.FindGameObjectsWithTag("Character");
-                //if (infected.Equals(gameObject) && infected.Length == 1 && crew.Length > 1)
-                //{
-                //    game.End(game.WinMenu);
-                //    //gameObject.SetActive(false);
-                //    Destroy(gameObject);
-                //    Destroy(this);
-                //}
-                //else if (infected.Length == 1 && crew.Length == 1)
-                //{
-                //    game.End(game.LoseMenu);
-                //    //gameObject.SetActive(false);
-                //    Destroy(gameObject);
-                //}
-                //else
-                //{
-                    //Destroy(gameObject);
-                    //Destroy(this);
-                //}
 
                 if (gameObject.TryGetComponent<Patrol>(out var patrol) != false && this)
                 {

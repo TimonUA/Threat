@@ -16,7 +16,6 @@ public class Game : MonoBehaviour
     public GameObject WinMenu;
     public GameObject LoseMenu;
     public HealthBar HealthBar;
-    //public GameObject Collider;
     private GameObject hitObject;
     public GameObject lastInfoObject;
     public string[] FirstMovementStr;
@@ -164,20 +163,15 @@ public class Game : MonoBehaviour
             {
                 if (!IsPatrol && GameObject.FindGameObjectsWithTag("Character").Length > 0)
                 {
-                    //Debug.Log("Crew length:"+GameObject.FindGameObjectsWithTag("Character").Length);
                     if (dt == 3)
                     {
-                        if (medBonus == 0.15)
-                            GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
-                        else
-                            GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
                         gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                         gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                         dt = 2;
                     }
                     crew = GameObject.FindGameObjectsWithTag("Character");
                     rand = Random.Range(0, crew.Length);
-                    //lastPatrolCrew = rand;
                     crew[rand].AddComponent<Patrol>();
                     IsPatrol = true;
                 }

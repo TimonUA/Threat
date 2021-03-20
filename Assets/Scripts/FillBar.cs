@@ -36,10 +36,4 @@ public class FillBar : MonoBehaviour
     {
         CurrentValue = 0f;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //CurrentValue += 0.0043f;
-    }
 }

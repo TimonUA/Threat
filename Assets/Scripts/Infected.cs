@@ -34,7 +34,7 @@ public class Infected : MonoBehaviour
     void Update()
     {
         if (!PauseMenu.IsPaused && !Game.IsEnd && !DialogueManager.IsDialogue)
-        {//помінять в сложності
+        {
             if (parantObject.GetComponent<Character>().health < parantObject.GetComponent<Character>().maxHealth * 0.4 && parantObject.tag == "MainInfected")
             {
                 if (st == 2)
@@ -93,10 +93,8 @@ public class Infected : MonoBehaviour
                     randN = Random.value;
                     AgeImpact(UnderThreat[i].GetComponent<Character>().age);
                     GenderImpact(UnderThreat[i].GetComponent<Character>().gender);
-                    //Debug.Log(ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f);
                     if (randN <= ChanceToInfect - UnderThreat[i].GetComponent<Character>().intelligence * 0.001f + ageChance * 0.001f + genderChance * 0.001f)
                     {
-                        //rand = Random.Range(0, UnderThreat.Count);
                         UnderThreat[i].GetComponent<Character>().IsInfected = true;
                         UnderThreat[i].transform.GetChild(0).gameObject.AddComponent<Infected>();
                         if (UnderThreat.Count > 1)

@@ -76,10 +76,6 @@ public class TilemapClick : MonoBehaviour
                     tilemap.SetTile(clickCellPosition, TileToChangeSW);
                 }
             }
-
-            //Debug.Log(clickCellPosition);
-            //Debug.Log(tilemap.GetTile(clickCellPosition));
-
         }
     }
 }
