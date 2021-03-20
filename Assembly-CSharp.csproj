@@ -87,7 +87,6 @@
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\TilemapClick.cs" />
     <Compile Include="Assets\Scripts\WinMenu.cs" />
-    <None Include="Assets\Sprites\Space\UI\Spritesheet\uipackSpace_sheet.xml" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\license_unity.txt" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\Examples\Example 1\People Avatars\Designed by.txt" />
     <None Include="Assets\Scripts\#NVJOB Name Generator\license_nvjob.txt" />

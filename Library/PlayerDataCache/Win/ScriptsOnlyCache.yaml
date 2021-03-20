@@ -1097,4 +1097,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/EasyGame.unity
   - Assets/Scenes/MediumGame.unity
   - Assets/Scenes/HardGame.unity
-  playerPath: D:/Unity/Unity Projects/Threat/Thread.exe
+  playerPath: C:/Users/TimonUA/Desktop/Threat/Threat.exe

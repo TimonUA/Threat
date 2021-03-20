@@ -1302,7 +1302,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 795688821}
   m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2383,7 +2383,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 795688821}
   m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3423,8 +3423,8 @@ MonoBehaviour:
   CharacterInfo: {fileID: 1153590579}
   MainInfectedObject: {fileID: 0}
   ProgressBar: {fileID: 526056092}
-  WinMenu: {fileID: 0}
-  LoseMenu: {fileID: 0}
+  WinMenu: {fileID: 1387758182}
+  LoseMenu: {fileID: 419227022}
   HealthBar: {fileID: 1487563321}
   lastInfoObject: {fileID: 0}
   FirstMovementStr:
@@ -9114,7 +9114,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 795688821}
   m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
