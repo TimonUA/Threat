@@ -55,7 +55,6 @@ public class Game : MonoBehaviour
         IsPatrol = false;
         GameDialogue = new Dialogue();
         GameDialogue.name = "Base AI";
-        //Помінять в сложності
         dangerousAge = 30;
         biggerAge = (Random.value > 0.5f);
         GameProgress = 0f;
@@ -165,7 +164,7 @@ public class Game : MonoBehaviour
                 {
                     if (dt == 3)
                     {
-                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect, but this only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
+                        GameDialogue.sentences = new string[] { "Stay near infected dangerously, crew member has chance to infect" , "but this is only way for crew member to develop a vaccine", "Also crew can develop vaccine even if they infected, but much slower", "So choose who go to infect reasonably", "The team itself directs 1 crew member to the infect", "But, you can choose who go to infect, just touch to gate,and gate cloose", "This means crew member can't go to infect", "Also base hospital develop vaccine independently, just touch vaccine symbols for develop vaccine" };
                         gameObject.GetComponent<DialogueTrigger>().dialogue = GameDialogue;
                         gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                         dt = 2;
